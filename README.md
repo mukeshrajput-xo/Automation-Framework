@@ -1,6 +1,7 @@
 # HelloBar_Automation
 
-We are using Selenium, TestNG for Reporting and Java as a language to automate, all of these are open source.
+We are using Selenium, TestNG for Reporting and Java as a language to automate, all of these resources are open source.
+
 TestNG is better choice over JUnit, for complete comparison please visit : http://www.mkyong.com/unittest/junit-4-vs-testng-comparison/
 
 We will use combination of "Page Object Model" and "Data Driven" automation frameworks to automate Hello Bar.
