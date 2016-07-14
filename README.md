@@ -9,9 +9,6 @@ We are using combination of "Page Object Model" and "Data Driven" automation fra
 
 
 This is the Package Representation of our Automation Framework:
-
-PageObjects : This package will contain classes representing each page which need to be automated
-
-Helpers : This package will contain all the Helper classes which can be used throughout the automation project
-
-Tests : This package will contain all the test scripts(test cases) which we need to automate in different classes.
+1. PageObjects : This package will contain classes representing each page which need to be automated.
+2. Helpers : This package will contain all the Helper classes which can be used throughout the automation project.
+3. Tests : This package will contain all the test scripts(test cases) which we need to automate in different classes.
