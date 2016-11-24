@@ -1,4 +1,4 @@
-# HelloBar_Automation
+# QA_Automation_Project
 
 We are using Selenium, TestNG for Reporting, Java as a language to automate and Maven to manage all the dependencies throught the project, all of these resources are open source.
 
