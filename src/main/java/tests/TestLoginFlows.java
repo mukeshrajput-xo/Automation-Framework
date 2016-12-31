@@ -14,7 +14,7 @@ public class TestLoginFlows
 {
 	
 	@Test
-	public void testPositiveLoginFlowOnProduction()
+	public void testPositiveLoginFlow()
 	{
 		String username = "prodtest@polymathic.me";
 		String password = "yourpassword";
