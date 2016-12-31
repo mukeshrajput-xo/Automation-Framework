@@ -17,7 +17,7 @@ public class TestLoginFlows
 	public void testPositiveLoginFlowOnProduction()
 	{
 		String username = "prodtest@polymathic.me";
-		String password = "password";
+		String password = "yourpassword";
 				
 		//Launch Browser and Navigate to Home page of website
 		WebDriver driver = Browser.openBrowserAndNavigateToUrl(BrowserName.Firefox, "https://www.hellobar.com/");
