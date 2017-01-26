@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 
 import helpers.Browser;
 import helpers.Browser.BrowserName;
+import helpers.Config;
 import pageObjects.DashboardPage;
 import pageObjects.HomePage;
 import pageObjects.LoginPage;
@@ -20,6 +21,9 @@ public class TestLoginFlows
 		String password = "yourpassword";
 				
 		System.out.println("========>>"+System.getProperty("user.dir"));
+		
+		Config config = new Config();
+		
 		//Launch Browser and Navigate to Home page of website
 		WebDriver driver = Browser.openBrowserAndNavigateToUrl(BrowserName.Firefox, "https://www.hellobar.com/");
 		HomePage homePage = new HomePage(driver);
