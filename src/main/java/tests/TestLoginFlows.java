@@ -19,6 +19,7 @@ public class TestLoginFlows
 		String username = "prodtest@polymathic.me";
 		String password = "yourpassword";
 				
+		System.out.println("========>>"+System.getProperty("user.dir"));
 		//Launch Browser and Navigate to Home page of website
 		WebDriver driver = Browser.openBrowserAndNavigateToUrl(BrowserName.Firefox, "https://www.hellobar.com/");
 		HomePage homePage = new HomePage(driver);
