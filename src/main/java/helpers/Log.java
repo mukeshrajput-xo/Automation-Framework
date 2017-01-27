@@ -1,12 +1,10 @@
 package helpers;
 
-
 import org.testng.Assert;
 import org.testng.Reporter;
 
 class Log
 {
-	
 	public static void Comment(String message, Config testConfig, String color)
 	{
 		logToStandard(message);

@@ -10,14 +10,12 @@ import org.testng.asserts.SoftAssert;
 
 public class Config 
 {
-
-	
 	public WebDriver driver = null;
 	public String testcaseName = "";
 	public String testLog = "";
 	public SoftAssert softAssert = null;
 	public boolean endExecutionOnfailure = false;
-	
+
 	private Properties runTimeProperties = null;
 	
 	public Config()
@@ -95,8 +93,31 @@ public class Config
 		Log.Warning(message, this);
 	}
 	
+	public void logWarning(String what, String expected, String actual)
+	{
+		String message = "Expected '" + what + "' was :-'" + expected + "'. But actual is '" + actual + "'";
+		Log.Warning(message, this);
+	}
+	
 	public void logFail(String message)
 	{
 		Log.Fail(message, this);
+	}
+	
+	public <T> void logFail(String what, T expected, T actual)
+	{
+		String message = "Expected '" + what + "' was :-'" + expected + "'. But actual is '" + actual + "'";
+		Log.Fail(message, this);
+	}
+	
+	public void logPass(String message)
+	{
+		Log.Pass(message, this);
+	}
+	
+	public <T> void logPass(String what, T actual)
+	{
+		String message = "Verified '" + what + "' as :-'" + actual + "'";
+		Log.Pass(message, this);
 	}
 }
