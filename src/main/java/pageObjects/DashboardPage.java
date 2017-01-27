@@ -17,6 +17,6 @@ public class DashboardPage
 	public DashboardPage(Config testConfig)
 	{
 		PageFactory.initElements(testConfig.driver, this);
-		Browser.waitForPageLoad(testConfig.driver, userNameWidget);
+		Browser.waitForPageLoad(testConfig, userNameWidget);
 	}
 }

@@ -18,13 +18,13 @@ public class HomePage
 	public HomePage(Config testConfig)
 	{
 		PageFactory.initElements(testConfig.driver, this);
-		Browser.waitForPageLoad(testConfig.driver, signInButton);
+		Browser.waitForPageLoad(testConfig, signInButton);
 	}
 	
 	
 	public LoginPage getLoginPage(Config testConfig)
 	{
-		Element.click(testConfig.driver, signInButton, "Sign In Button");
-		return new LoginPage(testConfig.driver);
+		Element.click(testConfig, signInButton, "Sign In Button");
+		return new LoginPage(testConfig);
 	}
 }
