@@ -27,6 +27,8 @@ public class TestLoginFlows extends TestBase
 		//Navigate to Login Page
 		LoginPage loginPage = (LoginPage) homePage.getLoginPage(testConfig);
 		
+		Browser.takeScreenshot(testConfig);
+		
 		//Now Login and reach to Dashboard Page
 		DashboardPage dashboardPage = (DashboardPage) loginPage.Login(testConfig, username, password, ExpectedLandingPageAfterLogin.DashboardPage);
 	}

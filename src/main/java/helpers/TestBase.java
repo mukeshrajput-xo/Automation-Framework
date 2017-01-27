@@ -1,5 +1,7 @@
 package helpers;
 
+import java.lang.reflect.Method;
+
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -29,11 +31,14 @@ public class TestBase
 	}
 	
 	@DataProvider(name = "getTestConfig")
-	public Object[][] getTestConfiguration()
+	public Object[][] getTestConfiguration(Method method)
 	{
-		Config config = new Config();
-		threadLocalConfig.set(new Config[]{config});
-		return new Object[][]{{config}};
+		Config testConfig = new Config();
+		testConfig.testcaseName = method.getName();
+		testConfig.logComment("=====>>Testcase name : "+testConfig.testcaseName);
+		
+		threadLocalConfig.set(new Config[]{testConfig});
+		return new Object[][]{{testConfig}};
 	}
 	
 	@AfterMethod

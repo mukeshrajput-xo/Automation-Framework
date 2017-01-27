@@ -1,10 +1,18 @@
 package helpers;
 
 import java.io.File;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -88,6 +96,7 @@ public class Browser
 				break;
 		}
 		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
 		testConfig.driver = driver;
 	}
 	
@@ -115,5 +124,49 @@ public class Browser
 		}
 		
 		testConfig.logComment("Page is successfully loaded.");
+	}
+	
+	public static void takeScreenshot(Config testConfig)
+	{
+		File screenshotUrl = getScreenShotFile(testConfig);
+		byte[] screenshot = ((TakesScreenshot)testConfig.driver).getScreenshotAs(OutputType.BYTES);
+		try {
+			FileUtils.writeByteArrayToFile(screenshotUrl, screenshot);
+		} catch (IOException e) {
+			System.out.println("=====>>Unable to take screenshot...");
+			e.printStackTrace();
+		}
+		
+		String href = convertFilePathToHtmlUrl(screenshotUrl.getPath());
+		testConfig.logComment("<B>Screenshot</B>:- <a href=" + href + " target='_blank' >" + screenshotUrl.getName() + "</a>");
+	}
+	
+	private static File getResultsDirectory(Config testConfig)
+	{
+		File dest = new File(testConfig.getRunTimeProperty("ResultsDir") + File.separator + "html" + File.separator );
+		return dest;
+	}
+	
+	public static File getScreenShotFile(Config testConfig)
+	{
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
+		Date date = new Date();
+		String nameScreenshot = dateFormat.format(date) + "_" + testConfig.testcaseName + ".png";
+		File dest = new File(getResultsDirectory(testConfig).getPath() + File.separator + nameScreenshot);
+		return dest;
+	}
+
+	/**
+	 * This function return the URL of a file on runtime depending on LOCAL or OFFICIAL Run
+	 * @param testConfig
+	 * @param fileUrl
+	 * @return
+	 */
+	public static String convertFilePathToHtmlUrl(String fileUrl)
+	{
+		String htmlUrl = "";
+		htmlUrl = fileUrl.replace(File.separator, "/");;
+		
+		return htmlUrl;
 	}
 }

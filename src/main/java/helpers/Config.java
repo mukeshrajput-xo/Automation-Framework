@@ -6,12 +6,14 @@ import java.util.Enumeration;
 import java.util.Properties;
 
 import org.openqa.selenium.WebDriver;
+import org.testng.Reporter;
 
 public class Config 
 {
 
 	Properties runTimeProperties = null;
 	public WebDriver driver = null;
+	public String testcaseName = null;
 	
 	public Config()
 	{
@@ -26,7 +28,7 @@ public class Config
 		} 
 		catch (Exception e) 
 		{
-			logComment("Exception while reading config.properties file...");
+			logComment("=====>>Exception while reading config.properties file...");
 			e.printStackTrace();
 		}
 		
@@ -77,8 +79,11 @@ public class Config
 	}
 	
 	
-	public void logComment(String comment)
+	public void logComment(String message)
 	{
-		System.out.println(comment);
+		String color = "Green";
+		System.out.println(message);
+		message = "<font color='" + color + "'>" + message + "</font></br>";
+		Reporter.log(message);
 	}
 }
