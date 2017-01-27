@@ -5,10 +5,13 @@ import java.io.FileInputStream;
 import java.util.Enumeration;
 import java.util.Properties;
 
+import org.openqa.selenium.WebDriver;
+
 public class Config 
 {
 
 	Properties runTimeProperties = null;
+	public WebDriver driver = null;
 	
 	public Config()
 	{

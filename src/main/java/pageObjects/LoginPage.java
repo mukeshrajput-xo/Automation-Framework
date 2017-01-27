@@ -6,6 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import helpers.Browser;
+import helpers.Config;
 import helpers.Element;
 
 public class LoginPage 
@@ -34,11 +35,11 @@ public class LoginPage
 		Browser.waitForPageLoad(driver, userNameTextBox);
 	}
 	
-	public Object Login(WebDriver driver, String username, String password, ExpectedLandingPageAfterLogin expectedLandingPage)
+	public Object Login(Config testConfig, String username, String password, ExpectedLandingPageAfterLogin expectedLandingPage)
 	{
 
-		Element.enterData(driver, userNameTextBox, username, "UserName");
-		Element.click(driver, continueBtn, "Continue Button");
+		Element.enterData(testConfig.driver, userNameTextBox, username, "UserName");
+		Element.click(testConfig.driver, continueBtn, "Continue Button");
 		
 		try {
 			Thread.sleep(2000);
@@ -46,8 +47,8 @@ public class LoginPage
 			e.printStackTrace();
 		}
 		
-		Element.enterData(driver, passwordTextBox, password, "Password");
-		Element.click(driver, continueBtn, "Continue Button");
+		Element.enterData(testConfig.driver, passwordTextBox, password, "Password");
+		Element.click(testConfig.driver, continueBtn, "Continue Button");
 		
 		switch(expectedLandingPage)
 		{
@@ -55,7 +56,7 @@ public class LoginPage
 				return this;
 				
 			case DashboardPage:
-				return new DashboardPage(driver);
+				return new DashboardPage(testConfig);
 				
 			default:
 				return this;

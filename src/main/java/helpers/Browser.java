@@ -26,7 +26,17 @@ public class Browser
 	}
 	
 	
-	public static WebDriver openBrowserAndNavigateToUrl(BrowserName browserName, String url)
+	public static void openBrowserAndNavigateToUrl(Config testConfig, BrowserName browserName, String url)
+	{
+		if(testConfig.driver == null)
+			openBrowser(testConfig, browserName);
+		
+		System.out.println("Navigating to URL : "+url);
+		testConfig.driver.get(url);
+	}
+	
+	
+	private static void openBrowser(Config testConfig, BrowserName browserName)
 	{
 		System.out.println("Launching " + browserName + " Browser...");
 		
@@ -78,11 +88,7 @@ public class Browser
 				break;
 		}
 		driver.manage().window().maximize();
-		
-		System.out.println("Navigating to URL : "+url);
-		driver.get(url);
-		
-		return driver;
+		testConfig.driver = driver;
 	}
 	
 	

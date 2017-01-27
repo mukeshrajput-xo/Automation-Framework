@@ -1,5 +1,6 @@
 package helpers;
 
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
@@ -29,12 +30,14 @@ public class TestBase
 	@DataProvider(name = "getTestConfig")
 	public Object[][] getTestConfiguration()
 	{
-		Object[][] config = new Object[][] {
-			   { "Cedric", new Integer(36) },
-			   { "Anne", new Integer(37)},
-			 };
-
-		return config;
+		Config config = new Config();
+		return new Object[][]{{config}};
 	}
 	
+	@AfterMethod
+	public void afterMethod(Config testConfig)
+	{
+		if(testConfig.driver != null)
+			testConfig.driver.quit();
+	}
 }
