@@ -6,19 +6,27 @@ import java.util.Enumeration;
 import java.util.Properties;
 
 import org.openqa.selenium.WebDriver;
-import org.testng.Reporter;
+import org.testng.asserts.SoftAssert;
 
 public class Config 
 {
 
-	Properties runTimeProperties = null;
+	
 	public WebDriver driver = null;
-	public String testcaseName = null;
+	public String testcaseName = "";
+	public String testLog = "";
+	public SoftAssert softAssert = null;
+	public boolean endExecutionOnfailure = false;
+	
+	private Properties runTimeProperties = null;
 	
 	public Config()
 	{
-		Properties properties = null;
 		
+		softAssert = new SoftAssert();
+		runTimeProperties = new Properties();
+		
+		Properties properties = null;
 		try 
 		{
 			FileInputStream fileInputStream = new FileInputStream(System.getProperty("user.dir")+File.separator+"Parameters"+File.separator+"config.properties");
@@ -32,7 +40,6 @@ public class Config
 			e.printStackTrace();
 		}
 		
-		this.runTimeProperties = new Properties();
 		Enumeration<Object> enumeration = properties.keys();
 		while (enumeration.hasMoreElements())
 		{
@@ -78,12 +85,18 @@ public class Config
 		return value;
 	}
 	
-	
 	public void logComment(String message)
 	{
-		String color = "Green";
-		System.out.println(message);
-		message = "<font color='" + color + "'>" + message + "</font></br>";
-		Reporter.log(message);
+		Log.Comment(message, this);
+	}
+	
+	public void logWarning(String message)
+	{
+		Log.Warning(message, this);
+	}
+	
+	public void logFail(String message)
+	{
+		Log.Fail(message, this);
 	}
 }

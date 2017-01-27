@@ -35,7 +35,6 @@ public class TestBase
 	{
 		Config testConfig = new Config();
 		testConfig.testcaseName = method.getName();
-		testConfig.logComment("=====>>Testcase name : "+testConfig.testcaseName);
 		
 		threadLocalConfig.set(new Config[]{testConfig});
 		return new Object[][]{{testConfig}};
