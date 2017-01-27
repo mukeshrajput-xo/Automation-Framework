@@ -26,9 +26,19 @@ public class Browser
 	}
 	
 	
-	public static WebDriver openBrowserAndNavigateToUrl(BrowserName browserName, String url)
+	public static void openBrowserAndNavigateToUrl(Config testConfig, BrowserName browserName, String url)
 	{
-		System.out.println("Launching " + browserName + " Browser...");
+		if(testConfig.driver == null)
+			openBrowser(testConfig, browserName);
+		
+		testConfig.logComment("Navigating to URL : "+url);
+		testConfig.driver.get(url);
+	}
+	
+	
+	private static void openBrowser(Config testConfig, BrowserName browserName)
+	{
+		testConfig.logComment("Launching " + browserName + " Browser...");
 		
 		WebDriver driver = null;
 		DesiredCapabilities capabilities = null;
@@ -78,17 +88,13 @@ public class Browser
 				break;
 		}
 		driver.manage().window().maximize();
-		
-		System.out.println("Navigating to URL : "+url);
-		driver.get(url);
-		
-		return driver;
+		testConfig.driver = driver;
 	}
 	
 	
-	public static void waitForPageLoad(WebDriver driver, WebElement element)
+	public static void waitForPageLoad(Config testConfig, WebElement element)
 	{
-		WebDriverWait wait = new WebDriverWait(driver, Long.parseLong("30"));
+		WebDriverWait wait = new WebDriverWait(testConfig.driver, Long.parseLong("30"));
 		
 		try
 		{
@@ -96,7 +102,7 @@ public class Browser
 		}
 		catch (StaleElementReferenceException e)
 		{
-			System.out.println("StaleElementReferenceException occured, so trying again...");
+			testConfig.logComment("StaleElementReferenceException occured, so trying again...");
 			
 			try
 			{
@@ -104,10 +110,10 @@ public class Browser
 			}
 			catch (Exception exc)
 			{
-				System.out.println("Even after second try, element is not loaded, so exiting.");
+				testConfig.logComment("Even after second try, element is not loaded, so exiting.");
 			}
 		}
 		
-		System.out.println("Page is successfully loaded.");
+		testConfig.logComment("Page is successfully loaded.");
 	}
 }

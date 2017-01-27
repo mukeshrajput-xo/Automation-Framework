@@ -1,11 +1,11 @@
 package pageObjects;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import helpers.Browser;
+import helpers.Config;
 import helpers.Element;
 
 public class HomePage 
@@ -15,16 +15,16 @@ public class HomePage
 	private WebElement signInButton;
 	
 	
-	public HomePage(WebDriver driver)
+	public HomePage(Config testConfig)
 	{
-		PageFactory.initElements(driver, this);
-		Browser.waitForPageLoad(driver, signInButton);
+		PageFactory.initElements(testConfig.driver, this);
+		Browser.waitForPageLoad(testConfig, signInButton);
 	}
 	
 	
-	public LoginPage getLoginPage(WebDriver driver)
+	public LoginPage getLoginPage(Config testConfig)
 	{
-		Element.click(driver, signInButton, "Sign In Button");
-		return new LoginPage(driver);
+		Element.click(testConfig, signInButton, "Sign In Button");
+		return new LoginPage(testConfig);
 	}
 }
