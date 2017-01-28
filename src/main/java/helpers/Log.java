@@ -5,7 +5,7 @@ import org.testng.Reporter;
 
 class Log
 {
-	public static void Comment(String message, Config testConfig, String color)
+	public static void Comment(Config testConfig, String message, String color)
 	{
 		logToStandard(message);
 		message = "<font color='" + color + "'>" + message + "</font></br>";
@@ -13,18 +13,18 @@ class Log
 		testConfig.testLog = testConfig.testLog.concat(message);
 	}
 	
-	public static void Comment(String message, Config testConfig)
+	public static void Comment(Config testConfig, String message)
 	{
-		Comment(message, testConfig, "Black");
+		Comment(testConfig, message, "Black");
 	}
 	
-	public static void Fail(String message, Config testConfig)
+	public static void Fail(Config testConfig, String message)
 	{
 		PageInfo(testConfig);
-		failure(message, testConfig);
+		failure(testConfig, message);
 	}
 	
-	public static void failure(String message, Config testConfig)
+	public static void failure(Config testConfig, String message)
 	{
 		String tempMessage = message;
 		testConfig.softAssert.fail(message);
@@ -39,7 +39,7 @@ class Log
 			Assert.fail("=====>>Ending execution in the middle:-"+tempMessage);
 	}
 	
-	public static void Failfinal(String message, Config testConfig)
+	public static void Failfinal(Config testConfig, String message)
 	{
 		try
 		{
@@ -65,7 +65,7 @@ class Log
 		}
 	}
 	
-	public static void Pass(String message, Config testConfig)
+	public static void Pass(Config testConfig, String message)
 	{
 		logToStandard(message);
 		message = "<font color='Green'>" + message + "</font></br>";
@@ -73,7 +73,7 @@ class Log
 		testConfig.testLog = testConfig.testLog.concat(message);
 	}
 	
-	public static void Warning(String message, Config testConfig)
+	public static void Warning(Config testConfig, String message)
 	{
 		logToStandard(message);
 		message = "<font color='Orange'>" + message + "</font></br>";
@@ -81,11 +81,11 @@ class Log
 		testConfig.testLog = testConfig.testLog.concat(message);
 	}
 	
-	public static void Warning(String message, Config testConfig, boolean logPageInfo)
+	public static void Warning(Config testConfig, String message, boolean logPageInfo)
 	{
 		if (logPageInfo)
 			PageInfo(testConfig);
 		
-		Warning(message, testConfig);
+		Warning(testConfig, message);
 	}
 }

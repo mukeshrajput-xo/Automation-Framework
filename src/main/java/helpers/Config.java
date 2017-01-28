@@ -85,39 +85,39 @@ public class Config
 	
 	public void logComment(String message)
 	{
-		Log.Comment(message, this);
+		Log.Comment(this, message);
 	}
 	
 	public void logWarning(String message)
 	{
-		Log.Warning(message, this);
+		Log.Warning(this, message);
 	}
 	
 	public void logWarning(String what, String expected, String actual)
 	{
 		String message = "Expected '" + what + "' was :-'" + expected + "'. But actual is '" + actual + "'";
-		Log.Warning(message, this);
+		Log.Warning(this, message);
 	}
 	
 	public void logFail(String message)
 	{
-		Log.Fail(message, this);
+		Log.Fail(this, message);
 	}
 	
 	public <T> void logFail(String what, T expected, T actual)
 	{
 		String message = "Expected '" + what + "' was :-'" + expected + "'. But actual is '" + actual + "'";
-		Log.Fail(message, this);
+		Log.Fail(this, message);
 	}
 	
 	public void logPass(String message)
 	{
-		Log.Pass(message, this);
+		Log.Pass(this, message);
 	}
 	
 	public <T> void logPass(String what, T actual)
 	{
 		String message = "Verified '" + what + "' as :-'" + actual + "'";
-		Log.Pass(message, this);
+		Log.Pass(this, message);
 	}
 }
