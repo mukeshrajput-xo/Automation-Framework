@@ -3,6 +3,7 @@ package helpers;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.Properties;
 
 import org.openqa.selenium.WebDriver;
@@ -18,13 +19,16 @@ public class Config
 
 	private Properties runTimeProperties = null;
 	
+	public static HashMap<String, TestDataReader> testDataReaderHashMap = new HashMap<String, TestDataReader>();
+	
+	
 	public Config()
 	{
-		
 		softAssert = new SoftAssert();
 		runTimeProperties = new Properties();
-		
 		Properties properties = null;
+		
+		//Code to read .properties file and put key value pairs into RunTime Property file
 		try 
 		{
 			FileInputStream fileInputStream = new FileInputStream(System.getProperty("user.dir")+File.separator+"Parameters"+File.separator+"config.properties");
@@ -60,6 +64,7 @@ public class Config
 		logComment("Putting RunTime key-" + keyName + " value:-'" + value + "'");
 	}
 	
+	
 	/**
 	 * Get the Run Time Property value
 	 * 
@@ -82,6 +87,7 @@ public class Config
 		}
 		return value;
 	}
+	
 	
 	public void logComment(String message)
 	{
@@ -119,5 +125,30 @@ public class Config
 	{
 		String message = "Verified '" + what + "' as :-'" + actual + "'";
 		Log.Pass(this, message);
+	}
+	
+	
+	/**
+	 * Get the cached TestDataReader Object for the given sheet. If it is not cached, it will be cached for future use
+	 * 
+	 * @param sheetName
+	 * @return TestDataReader object or null if object is not in cache
+	 */
+	public TestDataReader getExcelSheet(String sheetName)
+	{	
+		String path = System.getProperty("user.dir")+File.separator+"Parameters"+File.separator+"TestDataSheet.xls";
+		TestDataReader testDataReader = testDataReaderHashMap.get(path + sheetName);
+		
+		// Object is not in the cache
+		if (testDataReader == null)
+		{
+			// cache for future use
+			synchronized(Config.class)
+			{
+				testDataReader = new TestDataReader(this, sheetName, path);
+				testDataReaderHashMap.put(path + sheetName, testDataReader);
+			}
+		}
+		return testDataReader;
 	}
 }
