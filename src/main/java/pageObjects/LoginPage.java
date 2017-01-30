@@ -40,11 +40,7 @@ public class LoginPage
 		Element.enterData(testConfig, userNameTextBox, username, "UserName");
 		Element.click(testConfig, continueBtn, "Continue Button");
 		
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		Browser.wait(testConfig, 2);
 		
 		Element.enterData(testConfig, passwordTextBox, password, "Password");
 		Element.click(testConfig, continueBtn, "Continue Button");

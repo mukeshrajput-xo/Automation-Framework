@@ -3,7 +3,6 @@ package tests;
 import org.testng.annotations.Test;
 
 import helpers.Browser;
-import helpers.Browser.BrowserName;
 import helpers.Config;
 import helpers.TestBase;
 import pageObjects.DashboardPage;
@@ -21,7 +20,7 @@ public class TestLoginFlows extends TestBase
 		String password = "yourpassword";
 				
 		//Launch Browser and Navigate to Home page of website
-		Browser.openBrowserAndNavigateToUrl(testConfig, BrowserName.Firefox, "https://www.hellobar.com/");
+		Browser.openBrowserAndNavigateToUrl(testConfig, "https://www.hellobar.com/");
 		HomePage homePage = new HomePage(testConfig);
 		
 		//Navigate to Login Page
@@ -40,7 +39,7 @@ public class TestLoginFlows extends TestBase
 		String password = "password";
 				
 		//Launch Browser and Navigate to Home page of website
-		Browser.openBrowserAndNavigateToUrl(testConfig, BrowserName.Firefox, "https://www.hellobar.com/");
+		Browser.openBrowserAndNavigateToUrl(testConfig, "https://www.hellobar.com/");
 		HomePage homePage = new HomePage(testConfig);
 		
 		//Navigate to Login Page

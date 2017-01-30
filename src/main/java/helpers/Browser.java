@@ -28,24 +28,19 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class Browser 
 {
 	
-	public enum BrowserName
-	{
-		Firefox, Chrome, Safari, InternetExplorer
-	}
-	
-	
-	public static void openBrowserAndNavigateToUrl(Config testConfig, BrowserName browserName, String url)
+	public static void openBrowserAndNavigateToUrl(Config testConfig, String url)
 	{
 		if(testConfig.driver == null)
-			openBrowser(testConfig, browserName);
+			openBrowser(testConfig);
 		
 		testConfig.logComment("Navigating to URL : "+url);
 		testConfig.driver.get(url);
 	}
 	
 	
-	private static void openBrowser(Config testConfig, BrowserName browserName)
+	private static void openBrowser(Config testConfig)
 	{
+		String browserName = testConfig.getRunTimeProperty("browser").toLowerCase().trim();
 		testConfig.logComment("Launching " + browserName + " Browser...");
 		
 		WebDriver driver = null;
@@ -54,13 +49,13 @@ public class Browser
 		
 		switch(browserName)
 		{
-			case Firefox:
+			case "firefox":
 				capabilities = DesiredCapabilities.firefox();
 				capabilities.setCapability("version", browserVersion);
 				driver = new FirefoxDriver();
 				break;
 
-			case Chrome:
+			case "chrome":
 				System.setProperty("webdriver.chrome.driver", "lib" + File.separator + "chromedriver");
 				ChromeOptions chromeOptions = new ChromeOptions();
 				//chromeOptions.addArguments("--kiosk");
@@ -73,7 +68,7 @@ public class Browser
 				driver.manage().window().setSize(new Dimension(1280,900));
 				break;
 				
-			case Safari:
+			case "safari":
 				System.setProperty("webdriver.safari.driver", "lib" + File.separator + "SafariDriver");
 				SafariOptions safariOptions = new SafariOptions();
 				safariOptions.setUseCleanSession(true);
@@ -83,7 +78,7 @@ public class Browser
 				driver = new SafariDriver(capabilities);
 				break;
 				
-			case InternetExplorer:
+			case "internetExplorer":
 				System.setProperty("webdriver.ie.driver", "lib" + File.separator + "IEDriverServer");
 				capabilities = DesiredCapabilities.internetExplorer();
 				capabilities.setCapability("ignoreProtectedModeSettings", true);
@@ -98,6 +93,22 @@ public class Browser
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
 		testConfig.driver = driver;
+	}
+	
+	
+	public static void wait(Config testConfig, int seconds)
+	{
+		int milliseconds = seconds * 1000;
+		try
+		{
+			Thread.sleep(milliseconds);
+			testConfig.logComment("Wait for '" + seconds + "' seconds");
+			
+		}
+		catch (InterruptedException e)
+		{
+			e.printStackTrace();
+		}
 	}
 	
 	

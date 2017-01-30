@@ -26,18 +26,24 @@
 	  <artifactId>selenium-java</artifactId>
 	  <version>2.53.0</version>
 	</dependency>
+	
+	<dependency>
+		<groupId>com.jayway.restassured</groupId>
+	    <artifactId>rest-assured</artifactId>
+	    <version>2.9.0</version>
+	</dependency>
 
 	<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi-ooxml</artifactId>
-			<version>3.9</version>
-			<exclusions>
-				<exclusion>
-					<artifactId>xml-apis</artifactId>
-					<groupId>xml-apis</groupId>
-				</exclusion>
-			</exclusions>
-		</dependency>
+		<groupId>org.apache.poi</groupId>
+		<artifactId>poi-ooxml</artifactId>
+		<version>3.9</version>
+		<exclusions>
+			<exclusion>
+				<artifactId>xml-apis</artifactId>
+				<groupId>xml-apis</groupId>
+			</exclusion>
+		</exclusions>
+	</dependency>
 
   </dependencies>
 </project>
