@@ -139,6 +139,7 @@ public class Browser
 		
 		String href = convertFilePathToHtmlUrl(screenshotUrl.getPath());
 		testConfig.logComment("<B>Screenshot</B>:- <a href=" + href + " target='_blank' >" + screenshotUrl.getName() + "</a>");
+		testConfig.logComment("<B>Page URL</B>:- <a href=" + testConfig.driver.getCurrentUrl() + " target='_blank' >" + testConfig.driver.getCurrentUrl() + "</a>");
 	}
 	
 	private static File getResultsDirectory(Config testConfig)
@@ -151,8 +152,8 @@ public class Browser
 	{
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
 		Date date = new Date();
-		String nameScreenshot = dateFormat.format(date) + "_" + testConfig.testcaseName + ".png";
-		File dest = new File(getResultsDirectory(testConfig).getPath() + File.separator + nameScreenshot);
+		String screenshotName = testConfig.testcaseName + "_" + dateFormat.format(date) + ".png";
+		File dest = new File(getResultsDirectory(testConfig).getPath() + File.separator + screenshotName);
 		return dest;
 	}
 

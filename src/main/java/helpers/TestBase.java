@@ -7,10 +7,12 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Listeners;
 
+@Listeners(helpers.TestListener.class)
 public class TestBase 
 {
-	private static ThreadLocal<Config[]> threadLocalConfig = new ThreadLocal<Config[]>();
+	public static ThreadLocal<Config[]> threadLocalConfig = new ThreadLocal<Config[]>();
 	
 	@BeforeSuite
 	public void beforeSuite()
@@ -35,8 +37,7 @@ public class TestBase
 	{
 		Config testConfig = new Config();
 		testConfig.testcaseName = method.getName();
-		testConfig.logComment("=====>>Testcase name : "+testConfig.testcaseName);
-		
+
 		threadLocalConfig.set(new Config[]{testConfig});
 		return new Object[][]{{testConfig}};
 	}
@@ -45,13 +46,13 @@ public class TestBase
 	public void afterMethod()
 	{
 		Config[] testConfigs = threadLocalConfig.get();
-		  for (Config testConfig : testConfigs)
-		  {
-			  if(testConfig.driver != null)
-			  {
-				  testConfig.driver.quit();
-				  testConfig.logComment("Browser closed successfully.");
-			  }
-		  }
+		for (Config testConfig : testConfigs)
+		{
+			if(testConfig.driver != null)
+			{
+				testConfig.driver.quit();
+				testConfig.logComment("=====>>Browser is closed now.");
+			}
+		}
 	}
 }
