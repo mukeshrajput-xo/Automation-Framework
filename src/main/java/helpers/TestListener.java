@@ -1,5 +1,16 @@
 package helpers;
 
+
+import org.testng.ITestContext;
+import org.testng.ITestListener;
+import org.testng.ITestResult;
+
+public class TestListener implements ITestListener {
+	Config testConfig;
+
+	public void onTestStart(ITestResult result) {
+		// TODO Auto-generated method stub
+
 import org.testng.IInvokedMethod;
 import org.testng.IInvokedMethodListener;
 import org.testng.ITestContext;
@@ -52,13 +63,16 @@ public class TestListener implements ITestListener, IInvokedMethodListener
 	
 	public void onTestStart(ITestResult result) {
 
+
 	}
 
 	public void onTestSuccess(ITestResult result) {
 
 	}
 
-	public void onTestSkipped(ITestResult result) {
+	
+
+ public void onTestSkipped(ITestResult result) {
 		
 	}
 
@@ -77,4 +91,5 @@ public class TestListener implements ITestListener, IInvokedMethodListener
 	public void beforeInvocation(IInvokedMethod method, ITestResult testResult) {
 		
 	}
+
 }
