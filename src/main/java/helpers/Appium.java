@@ -1,7 +1,13 @@
 package helpers;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URL;
 
+import org.apache.commons.exec.CommandLine;
+import org.apache.commons.exec.DefaultExecuteResultHandler;
+import org.apache.commons.exec.DefaultExecutor;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import io.appium.java_client.AppiumDriver;
@@ -182,7 +188,7 @@ public class Appium
 			
 			if (driver == null)
 			{
-				testConfig.logFailToEndExecution("<-----Unable to create Appium session----->");
+				testConfig.logFailToEndExecution("<-----Unable to get AndoidDriver/iosDriver----->");
 			}
 			
 			testConfig.putRunTimeProperty("MobileUAFlag", "true");
@@ -190,22 +196,39 @@ public class Appium
 			return driver;
 	}
 	
+	    
+
+	
+	public void stopAppiumServer() 
+	{
+	    if (process != null) 
+	        process.destroy();
+
+	    System.out.println("Appium server stop");
+	}
+	
+	static Process process = null;
 	public static void startAppiumServer(Config testConfig, String localAppiumAddress, String localAppiumPort, String mobilePlatformName)
 	{
-/*		String appPackageName = testConfig.getRunTimeProperty("appPackage");
+		String ADB_listDevices = "adb devices";
+		String ADB_serverKill = "adb kill-server";
+		String ADB_serverStart = "adb start-server";
+		String ADB_uninstallAPK = "adb uninstall ";
+		String ADB_clearDataAPK = "adb shell pm clear ";
+		
+		String appPackageName = testConfig.getRunTimeProperty("appPackage");
 		if(appPackageName != null)
 		{
-			testConfig.ADBUNINSTALLAPK = testConfig.ADBUNINSTALLAPK + appPackageName;
-			testConfig.ADBCLEARDATAAPK = testConfig.ADBCLEARDATAAPK + appPackageName;
+			ADB_uninstallAPK = ADB_uninstallAPK + appPackageName;
+			ADB_clearDataAPK = ADB_clearDataAPK + appPackageName;
 		}
 		else
 		{
-			testConfig.ADBUNINSTALLAPK = testConfig.ADBUNINSTALLAPK + "com.payu.payutestapp";
-			testConfig.ADBCLEARDATAAPK = testConfig.ADBCLEARDATAAPK + "com.payu.payutestapp";
+			ADB_uninstallAPK = ADB_uninstallAPK + "com.payu.payutestapp";
+			ADB_clearDataAPK = ADB_clearDataAPK + "com.payu.payutestapp";
 		}
 			
-		String osType = System.getProperty("os.name");
-		if (mobilePlatformName.equalsIgnoreCase("Android"))
+		/*if (mobilePlatformName.equalsIgnoreCase("Android"))
 		{
 			// Kill all node servers
 			if(File.separator.equals("\\"))
@@ -217,14 +240,15 @@ public class Appium
 			adbListDevices(testConfig);
 			adbFetchAndroidOsVersion(testConfig);
 			clearAPKData(testConfig);
-		}
+		}*/
+		
 		Runtime runtime = Runtime.getRuntime();
 		try
 		{
+			String osType = System.getProperty("os.name");
 			if (!osType.startsWith("Window"))
 			{
 				// Start Appium Server on MAC OSX
-				// Path for Apium has been hard coded for Mac as all the Softwares are installed in a single location
 				CommandLine command = new CommandLine("/Applications/Appium.app/Contents/Resources/node/bin/node");
 				command.addArgument("/Applications/Appium.app/Contents/Resources/node_modules/appium/build/lib/main.js", false);
 				command.addArgument("--address", false);
@@ -239,6 +263,7 @@ public class Appium
 				command.addArgument(mobilePlatformName);
 				command.addArgument("--show-ios-log",false);
 				command.addArgument("--default-device",false);
+				
 				DefaultExecuteResultHandler resultHandler = new DefaultExecuteResultHandler();
 				DefaultExecutor executor = new DefaultExecutor();
 				executor.setExitValue(1);
@@ -248,24 +273,22 @@ public class Appium
 			{
 				// Start Appium Server on Windows Machine
 				String appium_path = System.getenv("APPIUM_HOME");
+				Process appiumServer = null;
 				if (appium_path == null)
 				{
 					testConfig.logComment("Appium Home Has not been set");
-					testConfig.appiumServer = runtime.exec(testConfig.APPIUMSERVERSTART+" -a "+localAppiumAddress+" -p "+localAppiumPort);
+					appiumServer = runtime.exec(ADB_serverStart+" -a "+localAppiumAddress+" -p "+localAppiumPort);
 				}
 				else
 				{
 					String commandToExecute = "\"" + appium_path + "/node.exe\" \"" + appium_path + "/node_modules/appium/bin/appium.js\" ";
-					commandToExecute += " --log " + System.getProperty("user.dir") + "\\Appium.log ";// Log
-																										// file
-					commandToExecute += " -p " + localAppiumPort;// Port for appium to
-															// listen on
+					commandToExecute += " --log " + System.getProperty("user.dir") + "\\Appium.log ";// Log file
+					commandToExecute += " -p " + localAppiumPort;// Port for appium to listen on
 					commandToExecute += " -a " + localAppiumAddress;// address for appium port
-					// commandToExecute += " -U " + "015d4b10091bee15";// To get a
-					// particular device
+					// commandToExecute += " -U " + "015d4b10091bee15";// To get a particular device
 					
 					testConfig.logComment("Running Command " + commandToExecute);
-					testConfig.appiumServer = runtime.exec(commandToExecute);
+					appiumServer = runtime.exec(commandToExecute);
 				}
 			}
 		}
@@ -274,20 +297,6 @@ public class Appium
 			e.printStackTrace();
 			testConfig.logComment("Error in Starting Appium Server: " + e.getMessage());
 		}
-		try
-		{
-			Thread.sleep(3000);
-		}
-		catch (InterruptedException e)
-		{
-			e.printStackTrace();
-			testConfig.logComment("Error in Starting Appium Server: " + e.getMessage());
-		}
-		if (testConfig.appiumServer != null && osType.startsWith("Window"))
-		{
-			
-			testConfig.logComment("Appium server started");
-		}*/
 	}
 	
 	/**Closes application/browser opened
@@ -340,5 +349,30 @@ public class Appium
 			testConfig.driver = null;
 		}
 	}
+	
+	private static void executeCommand(String command) {
+        String s = null;
+        String abc = command.replace("\"", "");
+        try {
+            Process p = Runtime.getRuntime().exec(abc);
+            BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
+            BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
+
+            // read the output from the command
+            System.out.println("Standard output of the command:\n");
+            while ((s = stdInput.readLine()) != null) {
+                System.out.println(s);
+            }
+
+            // read any errors from the attempted command
+            System.out.println("Standard error of the command (if any):\n");
+            while ((s = stdError.readLine()) != null) {
+                System.out.println(s);
+            }
+        } catch (IOException e) {
+            System.out.println("exception happened: ");
+            e.printStackTrace();
+        }
+    }
 
 }

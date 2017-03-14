@@ -23,7 +23,6 @@ public class Config
 	public boolean endExecutionOnfailure = false;
 	public boolean remoteExecution;
 	
-	public Process appiumServer = null;
 	public AppiumDriver<MobileElement> appiumDriver = null;
 	protected AndroidDriver<MobileElement> androidDriver = null;
 	protected IOSDriver<MobileElement> iosDriver = null;
