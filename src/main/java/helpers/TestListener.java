@@ -18,7 +18,7 @@ public class TestListener implements ITestListener, IInvokedMethodListener
 			  if(testConfig != null)
 			  {
 				  testConfig.logComment("***************EXECUTION OF TESTCASE ENDS HERE***************");
-				  Browser.takeScreenshot(testConfig);
+			//	  Browser.takeScreenshot(testConfig);
 			  }
 		  }
 	}

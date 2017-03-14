@@ -1,5 +1,7 @@
 package tests;
 
+import org.openqa.selenium.winium.DesktopOptions;
+import org.openqa.selenium.winium.WiniumDriver;
 import org.testng.annotations.Test;
 
 import helpers.Browser;
@@ -38,16 +40,22 @@ public class TestLoginFlows extends TestBase
 		String username = "prodtest@polymathic.me";
 		String password = "password";
 				
-		//Launch Browser and Navigate to Home page of website
-		Browser.openBrowserAndNavigateToUrl(testConfig, "https://www.hellobar.com/");
-		HomePage homePage = new HomePage(testConfig);
+		DesktopOptions options = DesktopOptions();
+		options.setApplicationPath("C:\\Windows\\System32\\notepad.exe");
+
 		
-		//Navigate to Login Page
-		LoginPage loginPage = (LoginPage) homePage.getLoginPage(testConfig);
+		//WiniumDriver driver = new WiniumDriver(options);
 		
-		//Now Login and reach to Dashboard Page
-		DashboardPage dashboardPage = (DashboardPage) loginPage.Login(testConfig, username, password, ExpectedLandingPageAfterLogin.DashboardPage);
+		WiniumDriverService service = new WiniumDriverService.Builder()
+                .usingDriverExecutable("path_to_driver_executable")
+                .usingAnyFreePort()
+                .withVerbose(true)
+                .withSilent(false);
+                .buildDesktopService();
+
+WiniumDriver driver = new WiniumDriver(service, options);
 		
-		dashboardPage.verifyDashboardPage(testConfig);
+		
+
 	}
 }
