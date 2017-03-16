@@ -11,7 +11,7 @@ import helpers.Element;
 public class HomePage 
 {
 
-	@FindBy(css = "a.button")
+	@FindBy(css = ".sign-in-button")
 	private WebElement signInButton;
 	
 	
@@ -24,7 +24,7 @@ public class HomePage
 	
 	public LoginPage getLoginPage(Config testConfig)
 	{
-		Element.click(testConfig, signInButton, "Sign In Button");
+		Element.click(testConfig, signInButton, "Log In Button");
 		return new LoginPage(testConfig);
 	}
 }

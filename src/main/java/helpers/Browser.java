@@ -2,6 +2,8 @@ package helpers;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -24,6 +26,8 @@ import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.safari.SafariOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.winium.DesktopOptions;
+import org.openqa.selenium.winium.WiniumDriver;
 
 public class Browser 
 {
@@ -34,6 +38,14 @@ public class Browser
 			openBrowser(testConfig);
 		
 		testConfig.logComment("Navigating to URL : "+url);
+		
+		if(testConfig.enableWinum)
+		{
+			WebElement urlTextbox = testConfig.driverWinium.findElementByName("Address and search bar");
+			urlTextbox.sendKeys(url);
+			urlTextbox.submit();
+		}
+		
 		testConfig.driver.get(url);
 	}
 	
@@ -93,6 +105,18 @@ public class Browser
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
 		testConfig.driver = driver;
+		
+		if(testConfig.enableWinum)
+		{
+			DesktopOptions options = new DesktopOptions();
+			//options.setApplicationPath("C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe");
+			try {
+				testConfig.driverWinium = new WiniumDriver(new URL("http://localhost:9999"),options);
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 	
 	
@@ -101,9 +125,8 @@ public class Browser
 		int milliseconds = seconds * 1000;
 		try
 		{
-			Thread.sleep(milliseconds);
 			testConfig.logComment("Wait for '" + seconds + "' seconds");
-			
+			Thread.sleep(milliseconds);
 		}
 		catch (InterruptedException e)
 		{

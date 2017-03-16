@@ -7,11 +7,14 @@ import java.util.HashMap;
 import java.util.Properties;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.winium.WiniumDriver;
 import org.testng.asserts.SoftAssert;
 
 public class Config 
 {
+	public boolean enableWinum = true;
 	public WebDriver driver = null;
+	public WiniumDriver driverWinium = null;
 	public String testcaseName = "";
 	public String testLog = "";
 	public SoftAssert softAssert = null;

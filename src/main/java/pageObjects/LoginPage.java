@@ -10,13 +10,13 @@ import helpers.Element;
 
 public class LoginPage 
 {
-	@FindBy(id="user_email")
+	@FindBy(id="email")
 	private WebElement userNameTextBox;
 	
-	@FindBy(css=".btn.btn-default.button")
+	@FindBy(css=".sign-in-btn")
 	private WebElement continueBtn;
 	
-	@FindBy(id="user_password")
+	@FindBy(id="password")
 	private WebElement passwordTextBox;
 	
 	@FindBy(id="user_submit")
@@ -43,7 +43,7 @@ public class LoginPage
 		Browser.wait(testConfig, 2);
 		
 		Element.enterData(testConfig, passwordTextBox, password, "Password");
-		Element.click(testConfig, continueBtn, "Continue Button");
+		Element.click(testConfig, continueBtn, "Login Button");
 		
 		switch(expectedLandingPage)
 		{

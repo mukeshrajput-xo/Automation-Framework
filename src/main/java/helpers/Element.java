@@ -18,6 +18,14 @@ public class Element
 		}
 		catch(WebDriverException wde){}
 		
+		
+		if(testConfig.enableWinum)
+		{
+			WebElement urlTextbox = testConfig.driverWinium.findElementByName("Address and search bar");
+			for(int i=0; i<Helper.generateRandomNumber(1); i++)
+				urlTextbox.click();
+		}
+		
 		//Then click element
 		element.click();
 	}
@@ -26,6 +34,15 @@ public class Element
 	public static void enterData(Config testConfig, WebElement element, String value, String description)
 	{
 		testConfig.logComment("Enter the " + description + " as '" + value + "'");
+		
+		if(testConfig.enableWinum)
+		{
+			String url = testConfig.driver.getCurrentUrl();
+			WebElement urlTextbox = testConfig.driverWinium.findElementByName("Address and search bar");
+			element.clear();
+			urlTextbox.sendKeys(url);
+		}
+		
 		element.clear();
 		element.sendKeys(value);
 	}
