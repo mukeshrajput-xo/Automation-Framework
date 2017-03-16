@@ -15,7 +15,7 @@ import pageObjects.RecordingsDashboardPage;
 public class TestLoginFlows extends TestBase
 {
 	
-	@Test(dataProvider="getTestConfig", invocationCount=1, timeOut=3600000)
+	@Test(dataProvider="getTestConfig", invocationCount=10, timeOut=3600000)
 	public void testLoginFlow(Config testConfig)
 	{
 		String username = "dev@dev.com";

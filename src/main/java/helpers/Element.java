@@ -41,6 +41,8 @@ public class Element
 			WebElement urlTextbox = testConfig.driverWinium.findElementByName("Address and search bar");
 			element.clear();
 			urlTextbox.sendKeys(url);
+			WebElement chrome = testConfig.driverWinium.findElementByClassName("Chrome_RenderWidgetHostHWND");
+			chrome.click();
 		}
 		
 		element.clear();

@@ -55,7 +55,8 @@ public class RecordingPage
 				String url = testConfig.driver.getCurrentUrl();
 				WebElement urlTextbox = testConfig.driverWinium.findElementByName("Address and search bar");
 				urlTextbox.sendKeys(url);
-				
+				WebElement chrome = testConfig.driverWinium.findElementByClassName("Chrome_RenderWidgetHostHWND");
+				chrome.click();
 				Browser.wait(testConfig, (int)Helper.generateRandomNumber(1));
 				for(int i=0; i<Helper.generateRandomNumber(1); i++)
 					urlTextbox.click();
