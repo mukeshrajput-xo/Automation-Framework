@@ -37,7 +37,7 @@ public class RecordingsDashboardPage
 		Element.click(testConfig, firstRecording, "First Recording");
 		
 		RecordingPage recordingPage = new RecordingPage(testConfig);
-		recordingPage.playThisRecording(testConfig, skipPauses);;
+		recordingPage.playThisRecording(testConfig, skipPauses);
 	}
 	
 }

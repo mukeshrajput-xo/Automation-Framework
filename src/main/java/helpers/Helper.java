@@ -1,5 +1,7 @@
 package helpers;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -187,5 +189,25 @@ public class Helper
 				retryCount = 0;
 		}
 		return randomNumber;
+	}
+	
+	public static int generateRandomNumber(int min, int max)
+	{
+		Random random = new Random();
+		int Low = 10;
+		int High = 100;
+		int randomNumber = random.nextInt(High-Low) + Low;
+
+		return randomNumber;
+	}
+	
+	//hhMMss
+	public static String getCurrentTime(String format)
+	{
+		Calendar cal = Calendar.getInstance();
+		SimpleDateFormat formatter = new SimpleDateFormat(format);
+		String currentTime = formatter.format(cal.getTime());
+
+		return currentTime;
 	}
 }
