@@ -42,7 +42,7 @@ public class Browser
 		if(testConfig.enableWinum)
 		{
 			WebElement urlTextbox = testConfig.driverWinium.findElementByName("Address and search bar");
-			urlTextbox.sendKeys(url);
+			urlTextbox.sendKeys(url.substring(0, 10));
 			urlTextbox.submit();
 		}
 		

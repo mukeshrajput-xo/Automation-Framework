@@ -47,10 +47,6 @@ public class RecordingPage
 		Element.click(testConfig, playButton, "Play Recordings");
 		Browser.wait(testConfig, 2);
 		
-		String min = Helper.getCurrentTime("mm");
-		int minValue = Integer.parseInt(min);
-		
-		
 		if(testConfig.enableWinum)
 		{
 			for(int k=0; k<50; k++)
@@ -73,28 +69,21 @@ public class RecordingPage
 					urlTextbox.click();
 				
 				
-				if(minValue % 2 == 0)
+				String min = Helper.getCurrentTime("mm");
+				int minValue = Integer.parseInt(min);
+				if(minValue % 3 == 0)
 				{
 					String oldUrl = testConfig.driver.getCurrentUrl();
 					TestDataReader testDataReader = testConfig.getExcelSheet("RECORDINGS");
 					String url = testDataReader.getData(Helper.generateRandomNumber(1,35), "URL");
 					
 					Browser.openBrowserAndNavigateToUrl(testConfig, url);
-					for(int i=0; i<(int)Helper.generateRandomNumber(1); i++)
+					for(int i=0; i<Helper.generateRandomNumber(1, 5); i++)
 						urlTextbox.click();
 					Browser.wait(testConfig, 50);
 					
 					Browser.openBrowserAndNavigateToUrl(testConfig, oldUrl);
 					RecordingPage recordingPage = new RecordingPage(testConfig);
-					
-					Element.click(testConfig, playNextBox, "Play Next = YES");
-					Browser.wait(testConfig, 2);
-					
-					if(skipPauses)
-					{
-						Element.click(testConfig, skipPausesBox, "Skip Pauses");
-						Browser.wait(testConfig, 2);
-					}
 					
 					Element.click(testConfig, playButton, "Play Recordings");
 					Browser.wait(testConfig, 2);
