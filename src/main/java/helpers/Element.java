@@ -22,7 +22,7 @@ public class Element
 		if(testConfig.enableWinum)
 		{
 			WebElement urlTextbox = testConfig.driverWinium.findElementByName("Address and search bar");
-			for(int i=0; i<Helper.generateRandomNumber(1); i++)
+			for(int i=0; i<Helper.generateRandomNumber(1,5); i++)
 				urlTextbox.click();
 		}
 		
