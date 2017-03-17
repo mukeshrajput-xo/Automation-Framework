@@ -62,7 +62,8 @@ public class Browser
 		if(testConfig.enableWinum)
 		{
 			DesktopOptions options = new DesktopOptions();
-			options.setApplicationPath("C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe");
+			//options.setApplicationPath("C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe");
+			options.setApplicationPath("C:\\Windows\\notepad.exe");
 			try {
 				testConfig.driverWinium = new WiniumDriver(new URL("http://localhost:9999"),options);
 			} catch (MalformedURLException e) {

@@ -31,7 +31,7 @@ public class RecordingPage
 		Browser.waitForPageLoad(testConfig, content);
 	}
 	
-	
+
 	public void playThisRecording(Config testConfig, boolean skipPauses)
 	{
 		Element.click(testConfig, playNextBox, "Play Next = YES");
@@ -54,7 +54,10 @@ public class RecordingPage
 				Browser.wait(testConfig, (int)Helper.generateRandomNumber(2));
 				String url = testConfig.driver.getCurrentUrl();
 				WebElement urlTextbox = testConfig.driverWinium.findElementByName("Address and search bar");
-				urlTextbox.sendKeys(url);
+				WebElement notepad = testConfig.driverWinium.findElementByClassName("Edit");
+				notepad.sendKeys(url);
+				System.out.println("Enter data : "+url);
+				
 				WebElement chrome = testConfig.driverWinium.findElementByClassName("Chrome_RenderWidgetHostHWND");
 				chrome.click();
 				Browser.wait(testConfig, (int)Helper.generateRandomNumber(1));
