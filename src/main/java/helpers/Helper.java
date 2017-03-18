@@ -194,9 +194,7 @@ public class Helper
 	public static int generateRandomNumber(int min, int max)
 	{
 		Random random = new Random();
-		int Low = 10;
-		int High = 100;
-		int randomNumber = random.nextInt(High-Low) + Low;
+		int randomNumber = random.nextInt(max-min) + min;
 
 		return randomNumber;
 	}

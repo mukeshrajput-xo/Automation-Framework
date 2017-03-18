@@ -54,7 +54,7 @@ public class RecordingPage
 
 				Browser.wait(testConfig, (int)Helper.generateRandomNumber(2));
 				
-				String value = Helper.generateRandomAlphaNumericString(Helper.generateRandomNumber(5,20));
+				String value = Helper.generateRandomAlphaNumericString(Helper.generateRandomNumber(2,11));
 				System.out.println("Enter data : " + value);
 				WebElement notepad = testConfig.driverWinium.findElementByClassName("Edit");
 				notepad.sendKeys(value);
