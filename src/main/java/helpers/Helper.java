@@ -3,6 +3,7 @@ package helpers;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -193,9 +194,7 @@ public class Helper
 	
 	public static int generateRandomNumber(int min, int max)
 	{
-		Random random = new Random();
-		int randomNumber = random.nextInt(max-min) + min;
-
+		int randomNumber = ThreadLocalRandom.current().nextInt(min, max + 1);
 		return randomNumber;
 	}
 	

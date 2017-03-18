@@ -52,7 +52,7 @@ public class RecordingPage
 			for(int k=0; k<50; k++)
 			{
 
-				Browser.wait(testConfig, (int)Helper.generateRandomNumber(2));
+				Browser.wait(testConfig, Helper.generateRandomNumber(35,120));
 				
 				String value = Helper.generateRandomAlphaNumericString(Helper.generateRandomNumber(2,11));
 				System.out.println("Enter data : " + value);
