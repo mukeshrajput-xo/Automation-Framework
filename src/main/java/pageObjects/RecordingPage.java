@@ -80,7 +80,7 @@ public class RecordingPage
 					Browser.openBrowserAndNavigateToUrl(testConfig, url);
 					for(int i=0; i<Helper.generateRandomNumber(1, 5); i++)
 						urlTextbox.click();
-					Browser.wait(testConfig, 50);
+					Browser.wait(testConfig, Helper.generateRandomNumber(45, 100));
 					
 					Browser.openBrowserAndNavigateToUrl(testConfig, oldUrl);
 					RecordingPage recordingPage = new RecordingPage(testConfig);
