@@ -52,7 +52,7 @@ public class RecordingPage
 			for(int k=0; k<50; k++)
 			{
 
-				Browser.wait(testConfig, Helper.generateRandomNumber(35,120));
+				Browser.wait(testConfig, Helper.generateRandomNumber(50,120));
 				
 				String value = Helper.generateRandomAlphaNumericString(Helper.generateRandomNumber(2,11));
 				System.out.println("Enter data : " + value);
@@ -62,7 +62,7 @@ public class RecordingPage
 				WebElement chrome = testConfig.driverWinium.findElementByClassName("Chrome_RenderWidgetHostHWND");
 				chrome.click();
 				
-				Browser.wait(testConfig, (int)Helper.generateRandomNumber(1));
+				Browser.wait(testConfig, Helper.generateRandomNumber(5, 20));
 				
 				WebElement urlTextbox = testConfig.driverWinium.findElementByName("Address and search bar");
 				int count = Helper.generateRandomNumber(1,5);
@@ -72,7 +72,7 @@ public class RecordingPage
 				
 				String min = Helper.getCurrentTime("mm");
 				int minValue = Integer.parseInt(min);
-				if(minValue % 3 == 0)
+				if(minValue % 2 == 0)
 				{
 					String oldUrl = testConfig.driver.getCurrentUrl();
 					TestDataReader testDataReader = testConfig.getExcelSheet("RECORDINGS");
