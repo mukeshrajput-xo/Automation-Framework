@@ -65,7 +65,8 @@ public class RecordingPage
 				Browser.wait(testConfig, (int)Helper.generateRandomNumber(1));
 				
 				WebElement urlTextbox = testConfig.driverWinium.findElementByName("Address and search bar");
-				for(int i=0; i<Helper.generateRandomNumber(1,5); i++)
+				int count = Helper.generateRandomNumber(1,5);
+				for(int i=0; i<count; i++)
 					urlTextbox.click();
 				
 				
@@ -78,7 +79,9 @@ public class RecordingPage
 					String url = testDataReader.getData(Helper.generateRandomNumber(1,35), "URL");
 					
 					Browser.openBrowserAndNavigateToUrl(testConfig, url);
-					for(int i=0; i<Helper.generateRandomNumber(1, 5); i++)
+					
+					int counter = Helper.generateRandomNumber(1,5);
+					for(int i=0; i<counter; i++)
 						urlTextbox.click();
 					Browser.wait(testConfig, Helper.generateRandomNumber(45, 100));
 					
