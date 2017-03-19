@@ -59,12 +59,10 @@ public class RecordingPage
 				WebElement notepad = testConfig.driverWinium.findElementByClassName("Edit");
 				notepad.sendKeys(value);
 				
-				WebElement chrome = testConfig.driverWinium.findElementByClassName("Chrome_RenderWidgetHostHWND");
-				chrome.click();
+				WebElement urlTextbox = testConfig.driverWinium.findElementByName("Address and search bar");
+				urlTextbox.click();
 				
 				Browser.wait(testConfig, Helper.generateRandomNumber(5, 20));
-				
-				WebElement urlTextbox = testConfig.driverWinium.findElementByName("Address and search bar");
 				int count = Helper.generateRandomNumber(1,5);
 				for(int i=0; i<count; i++)
 					urlTextbox.click();

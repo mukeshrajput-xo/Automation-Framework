@@ -26,6 +26,8 @@ public class Element
 		}
 		catch(WebDriverException wde){}
 		
+		//Then click element
+		element.click();
 		
 		if(testConfig.enableWinum)
 		{
@@ -34,28 +36,24 @@ public class Element
 			for(int i=0; i<count; i++)
 				urlTextbox.click();
 		}
-		
-		//Then click element
-		element.click();
 	}
 	
 	
 	public static void enterData(Config testConfig, WebElement element, String value, String description)
 	{
 		testConfig.logComment("Enter the " + description + " as '" + value + "'");
+		element.clear();
+		element.sendKeys(value);
 		
 		if(testConfig.enableWinum)
 		{
 			String url = testConfig.driver.getCurrentUrl();
+			WebElement notepad = testConfig.driverWinium.findElementByClassName("Edit");
+			notepad.clear();
+			notepad.sendKeys("crazyegg");
 			WebElement urlTextbox = testConfig.driverWinium.findElementByName("Address and search bar");
-			element.clear();
-			urlTextbox.sendKeys(url);
-			WebElement chrome = testConfig.driverWinium.findElementByClassName("Chrome_RenderWidgetHostHWND");
-			chrome.click();
+			urlTextbox.click();
 		}
-		
-		element.clear();
-		element.sendKeys(value);
 	}
 	
 	public static WebElement getPageElement(Config testConfig, How how, String what)

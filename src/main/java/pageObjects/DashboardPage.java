@@ -46,7 +46,8 @@ public class DashboardPage
 		Browser.wait(testConfig, Helper.generateRandomNumber(15,30));
 		
 		WebElement username = Element.getPageElement(testConfig, How.css, "#username");
-		Element.enterData(testConfig, username, "mukesh.rajput@crossover.com", "Username");
+		String user = "mukesh.rajput@crossover.com";
+		Element.enterData(testConfig, username, user, "Username");
 		
 		Browser.wait(testConfig, Helper.generateRandomNumber(15,30));
 		
@@ -63,11 +64,8 @@ public class DashboardPage
 		loginBtn = Element.getPageElement(testConfig, How.css, "#login-submit");
 		Element.click(testConfig, loginBtn, "Login Button");
 		
-		Browser.wait(testConfig, Helper.generateRandomNumber(15,30));
-		
+		Browser.wait(testConfig, 60);
 		Browser.waitForPageLoad(testConfig, Element.getPageElement(testConfig, How.css, "#create_link"));
-		
-		Browser.wait(testConfig, Helper.generateRandomNumber(30,55));
 		
 		Browser.openBrowserAndNavigateToUrl(testConfig, oldUrl);
 		DashboardPage dashboardPage = new DashboardPage(testConfig);
@@ -78,27 +76,23 @@ public class DashboardPage
 	public void verifyDetailsInTable(Config testConfig)
 	{
 		TestDataReader testDataReader = testConfig.getExcelSheet("RECORDINGS");
-		
 		for(int urlRow = 1; urlRow<36; urlRow++)
 		{
 			String url = testDataReader.getData(urlRow, "URL");
-			
 			Browser.openBrowserAndNavigateToUrl(testConfig, url);
 			Browser.wait(testConfig, Helper.generateRandomNumber(115,150));
-			
 			String value = Helper.generateRandomAlphaNumericString(Helper.generateRandomNumber(2,11));
 			System.out.println("Enter data : " + value);
 			
 			if(testConfig.enableWinum)
 			{
 				WebElement notepad = testConfig.driverWinium.findElementByClassName("Edit");
+				System.out.println("Enter data : " + value);
 				notepad.sendKeys(value);
-				
-				WebElement chrome = testConfig.driverWinium.findElementByClassName("Chrome_RenderWidgetHostHWND");
-				chrome.click();
+				WebElement urlTextbox = testConfig.driverWinium.findElementByName("Address and search bar");
+				urlTextbox.click();
 				
 				Browser.wait(testConfig, Helper.generateRandomNumber(60, 115));
-				WebElement urlTextbox = testConfig.driverWinium.findElementByName("Address and search bar");
 				int count = Helper.generateRandomNumber(1,5);
 				for(int i=0; i<count; i++)
 					urlTextbox.click();
@@ -110,12 +104,10 @@ public class DashboardPage
 					urlTextbox.click();
 				
 				Browser.wait(testConfig, Helper.generateRandomNumber(115,150));
-				
 				value = Helper.generateRandomAlphaNumericString(Helper.generateRandomNumber(2,11));
 				System.out.println("Enter data : " + value);
 				notepad.sendKeys(value);
-				
-				chrome.click();
+				urlTextbox.click();
 				
 				Browser.wait(testConfig, Helper.generateRandomNumber(60, 115));
 				count = Helper.generateRandomNumber(1,5);
@@ -128,8 +120,12 @@ public class DashboardPage
 				for(int i=0; i<count; i++)
 					urlTextbox.click();
 				
+				Browser.wait(testConfig, Helper.generateRandomNumber(115,150));
+				value = Helper.generateRandomAlphaNumericString(Helper.generateRandomNumber(2,11));
+				System.out.println("Enter data : " + value);
+				notepad.sendKeys(value);
+				
 				Browser.wait(testConfig, Helper.generateRandomNumber(60, 115));
-				urlTextbox = testConfig.driverWinium.findElementByName("Address and search bar");
 				count = Helper.generateRandomNumber(1,5);
 				for(int i=0; i<count; i++)
 					urlTextbox.click();
@@ -146,12 +142,10 @@ public class DashboardPage
 					urlTextbox.click();
 				
 				Browser.wait(testConfig, Helper.generateRandomNumber(115,150));
-				
 				value = Helper.generateRandomAlphaNumericString(Helper.generateRandomNumber(2,11));
 				System.out.println("Enter data : " + value);
 				notepad.sendKeys(value);
-				
-				chrome.click();
+				urlTextbox.click();
 				
 				Browser.wait(testConfig, Helper.generateRandomNumber(60, 115));
 				count = Helper.generateRandomNumber(1,5);
