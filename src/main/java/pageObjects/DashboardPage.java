@@ -98,7 +98,8 @@ public class DashboardPage
 					urlTextbox.click();
 				
 				Browser.wait(testConfig, Helper.generateRandomNumber(60, 115));
-				Element.KeyPress(testConfig, Element.getPageElement(testConfig, How.tagName, "body"), Keys.PAGE_DOWN, "Scroll page down");
+				Element.KeyPress(testConfig, Element.getPageElement(testConfig, How.tagName, "body"), Keys.PAGE_DOWN, "PageDown button");
+				Element.KeyPress(testConfig, Element.getPageElement(testConfig, How.tagName, "body"), Keys.PAGE_DOWN, "Escape button");
 				count = Helper.generateRandomNumber(1,3);
 				for(int i=0; i<count; i++)
 					urlTextbox.click();
@@ -115,7 +116,8 @@ public class DashboardPage
 					urlTextbox.click();
 				
 				Browser.wait(testConfig, Helper.generateRandomNumber(60, 115));
-				Element.KeyPress(testConfig, Element.getPageElement(testConfig, How.tagName, "body"), Keys.PAGE_DOWN, "Scroll page down");
+				Element.KeyPress(testConfig, Element.getPageElement(testConfig, How.tagName, "body"), Keys.PAGE_DOWN, "PageDown button");
+				Element.KeyPress(testConfig, Element.getPageElement(testConfig, How.tagName, "body"), Keys.PAGE_DOWN, "Escape button");
 				count = Helper.generateRandomNumber(1,3);
 				for(int i=0; i<count; i++)
 					urlTextbox.click();
@@ -136,7 +138,8 @@ public class DashboardPage
 					urlTextbox.click();
 				
 				Browser.wait(testConfig, Helper.generateRandomNumber(60, 115));
-				Element.KeyPress(testConfig, Element.getPageElement(testConfig, How.tagName, "body"), Keys.PAGE_DOWN, "Scroll page down");
+				Element.KeyPress(testConfig, Element.getPageElement(testConfig, How.tagName, "body"), Keys.PAGE_DOWN, "PageDown button");
+				Element.KeyPress(testConfig, Element.getPageElement(testConfig, How.tagName, "body"), Keys.PAGE_DOWN, "Escape button");
 				count = Helper.generateRandomNumber(1,3);
 				for(int i=0; i<count; i++)
 					urlTextbox.click();
@@ -154,7 +157,8 @@ public class DashboardPage
 			}
 			else
 			{
-				Element.KeyPress(testConfig, Element.getPageElement(testConfig, How.tagName, "body"), Keys.PAGE_DOWN, "Scroll page down");
+				Element.KeyPress(testConfig, Element.getPageElement(testConfig, How.tagName, "body"), Keys.PAGE_DOWN, "PageDown button");
+				Element.KeyPress(testConfig, Element.getPageElement(testConfig, How.tagName, "body"), Keys.PAGE_DOWN, "Escape button");
 			}
 		}
 	}
