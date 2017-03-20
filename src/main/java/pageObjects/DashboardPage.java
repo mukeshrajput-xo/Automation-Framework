@@ -81,21 +81,69 @@ public class DashboardPage
 			String url = testDataReader.getData(urlRow, "URL");
 			Browser.openBrowserAndNavigateToUrl(testConfig, url);
 			Browser.wait(testConfig, Helper.generateRandomNumber(115,150));
-			String value = Helper.generateRandomAlphaNumericString(Helper.generateRandomNumber(2,11));
+			String value = Helper.generateRandomAlphaNumericString(Helper.generateRandomNumber(5,15));
 			System.out.println("Enter data : " + value);
 			
 			if(testConfig.enableWinum)
 			{
 				WebElement notepad = testConfig.driverWinium.findElementByClassName("Edit");
+				value = Helper.generateRandomAlphaNumericString(Helper.generateRandomNumber(5,15));
 				System.out.println("Enter data : " + value);
 				notepad.sendKeys(value);
 				WebElement urlTextbox = testConfig.driverWinium.findElementByName("Address and search bar");
+				for(int i=0; i<4; i++)
+					urlTextbox.click();
+				
+				Browser.wait(testConfig, Helper.generateRandomNumber(60, 115));
+				int count = Helper.generateRandomNumber(3,6);
+				for(int i=0; i<count; i++)
+					urlTextbox.click();
+				
+				Browser.wait(testConfig, Helper.generateRandomNumber(60, 115));
+				Element.KeyPress(testConfig, Element.getPageElement(testConfig, How.tagName, "body"), Keys.PAGE_DOWN, "PageDown button");
+				Element.KeyPress(testConfig, Element.getPageElement(testConfig, How.tagName, "body"), Keys.PAGE_DOWN, "Escape button");
+				count = Helper.generateRandomNumber(3,6);
+				for(int i=0; i<count; i++)
+					urlTextbox.click();
+				value = Helper.generateRandomAlphaNumericString(5);
+				System.out.println("Enter data : " + value);
+				notepad.sendKeys(value);
+				
+				Browser.wait(testConfig, Helper.generateRandomNumber(115,140));
+				value = Helper.generateRandomAlphaNumericString(Helper.generateRandomNumber(5,15));
+				System.out.println("Enter data : " + value);
+				notepad.sendKeys(value);
 				urlTextbox.click();
 				
 				Browser.wait(testConfig, Helper.generateRandomNumber(60, 115));
-				int count = Helper.generateRandomNumber(1,5);
+				count = Helper.generateRandomNumber(3,6);
 				for(int i=0; i<count; i++)
 					urlTextbox.click();
+				
+				Browser.wait(testConfig, Helper.generateRandomNumber(60, 115));
+				Element.KeyPress(testConfig, Element.getPageElement(testConfig, How.tagName, "body"), Keys.PAGE_DOWN, "PageDown button");
+				Element.KeyPress(testConfig, Element.getPageElement(testConfig, How.tagName, "body"), Keys.PAGE_DOWN, "Escape button");
+				count = Helper.generateRandomNumber(3,6);
+				for(int i=0; i<count; i++)
+					urlTextbox.click();
+				
+				Browser.wait(testConfig, Helper.generateRandomNumber(115,150));
+				value = Helper.generateRandomAlphaNumericString(Helper.generateRandomNumber(5,15));
+				System.out.println("Enter data : " + value);
+				notepad.sendKeys(value);
+				
+				Browser.wait(testConfig, Helper.generateRandomNumber(60, 115));
+				count = Helper.generateRandomNumber(3,6);
+				for(int i=0; i<count; i++)
+					urlTextbox.click();
+				
+				Browser.wait(testConfig, Helper.generateRandomNumber(60, 115));
+				count = Helper.generateRandomNumber(2,4);
+				for(int i=0; i<count; i++)
+					urlTextbox.click();
+				value = Helper.generateRandomAlphaNumericString(Helper.generateRandomNumber(5,10));
+				System.out.println("Enter data : " + value);
+				notepad.sendKeys(value);
 				
 				Browser.wait(testConfig, Helper.generateRandomNumber(60, 115));
 				Element.KeyPress(testConfig, Element.getPageElement(testConfig, How.tagName, "body"), Keys.PAGE_DOWN, "PageDown button");
@@ -104,54 +152,14 @@ public class DashboardPage
 				for(int i=0; i<count; i++)
 					urlTextbox.click();
 				
-				Browser.wait(testConfig, Helper.generateRandomNumber(115,150));
-				value = Helper.generateRandomAlphaNumericString(Helper.generateRandomNumber(2,11));
+				Browser.wait(testConfig, Helper.generateRandomNumber(115,140));
+				value = Helper.generateRandomAlphaNumericString(Helper.generateRandomNumber(5,15));
 				System.out.println("Enter data : " + value);
 				notepad.sendKeys(value);
 				urlTextbox.click();
 				
 				Browser.wait(testConfig, Helper.generateRandomNumber(60, 115));
-				count = Helper.generateRandomNumber(1,5);
-				for(int i=0; i<count; i++)
-					urlTextbox.click();
-				
-				Browser.wait(testConfig, Helper.generateRandomNumber(60, 115));
-				Element.KeyPress(testConfig, Element.getPageElement(testConfig, How.tagName, "body"), Keys.PAGE_DOWN, "PageDown button");
-				Element.KeyPress(testConfig, Element.getPageElement(testConfig, How.tagName, "body"), Keys.PAGE_DOWN, "Escape button");
-				count = Helper.generateRandomNumber(1,3);
-				for(int i=0; i<count; i++)
-					urlTextbox.click();
-				
-				Browser.wait(testConfig, Helper.generateRandomNumber(115,150));
-				value = Helper.generateRandomAlphaNumericString(Helper.generateRandomNumber(2,11));
-				System.out.println("Enter data : " + value);
-				notepad.sendKeys(value);
-				
-				Browser.wait(testConfig, Helper.generateRandomNumber(60, 115));
-				count = Helper.generateRandomNumber(1,5);
-				for(int i=0; i<count; i++)
-					urlTextbox.click();
-				
-				Browser.wait(testConfig, Helper.generateRandomNumber(60, 115));
-				count = Helper.generateRandomNumber(1,3);
-				for(int i=0; i<count; i++)
-					urlTextbox.click();
-				
-				Browser.wait(testConfig, Helper.generateRandomNumber(60, 115));
-				Element.KeyPress(testConfig, Element.getPageElement(testConfig, How.tagName, "body"), Keys.PAGE_DOWN, "PageDown button");
-				Element.KeyPress(testConfig, Element.getPageElement(testConfig, How.tagName, "body"), Keys.PAGE_DOWN, "Escape button");
-				count = Helper.generateRandomNumber(1,3);
-				for(int i=0; i<count; i++)
-					urlTextbox.click();
-				
-				Browser.wait(testConfig, Helper.generateRandomNumber(115,150));
-				value = Helper.generateRandomAlphaNumericString(Helper.generateRandomNumber(2,11));
-				System.out.println("Enter data : " + value);
-				notepad.sendKeys(value);
-				urlTextbox.click();
-				
-				Browser.wait(testConfig, Helper.generateRandomNumber(60, 115));
-				count = Helper.generateRandomNumber(1,5);
+				count = Helper.generateRandomNumber(2,6);
 				for(int i=0; i<count; i++)
 					urlTextbox.click();
 			}
