@@ -47,9 +47,8 @@ public class Element
 		
 		if(testConfig.enableWinum)
 		{
-			String url = testConfig.driver.getCurrentUrl();
+			Browser.wait(testConfig, 2);
 			WebElement notepad = testConfig.driverWinium.findElementByClassName("Edit");
-			notepad.clear();
 			notepad.sendKeys("crazyegg");
 			WebElement urlTextbox = testConfig.driverWinium.findElementByName("Address and search bar");
 			urlTextbox.click();

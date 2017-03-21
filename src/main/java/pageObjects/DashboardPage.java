@@ -54,10 +54,11 @@ public class DashboardPage
 		WebElement loginBtn = Element.getPageElement(testConfig, How.css, "#login-submit");
 		Element.click(testConfig, loginBtn, "Login Button");
 		
-		Browser.wait(testConfig, Helper.generateRandomNumber(15,30));
+		Browser.wait(testConfig, 10);
 		
 		username = Element.getPageElement(testConfig, How.css, "#password");
-		Element.enterData(testConfig, username, "Mukesh@12345", "Username");
+		String pass = "Mukesh@12345";
+		Element.enterData(testConfig, username, pass, "Username");
 		
 		Browser.wait(testConfig, Helper.generateRandomNumber(15,30));
 		

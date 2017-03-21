@@ -129,9 +129,10 @@ public class Browser
 			testConfig.logComment("Wait for '" + seconds + "' seconds");
 			Thread.sleep(milliseconds);
 		}
-		catch (InterruptedException e)
+		catch (Exception e)
 		{
-			e.printStackTrace();
+			testConfig.logComment("=====>>Inside catch for InterruptedException");
+			//e.printStackTrace();
 		}
 	}
 	
