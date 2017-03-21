@@ -15,14 +15,24 @@ import pageObjects.RecordingsDashboardPage;
 public class TestLoginFlows extends TestBase
 {
 	
-	@Test(dataProvider="getTestConfig", invocationCount=50, timeOut=3600000)
+	@Test(dataProvider="getTestConfig", invocationCount=5, timeOut=3600000)
 	public void testSimpleLoginFlow(Config testConfig)
 	{
+		
+		boolean production = true;
+		
 		String username = "dev@dev.com";
 		String password = "developer";
+		String url = "https://staging2.crazyegg.com:8095/";
+		if(production)
+		{
+			username = "john@likealightbulb.com";
+			password = "7ismyPassword";
+			url = "https://www.crazyegg.com/";
+		}
 		
 		//Launch Browser and Navigate to Home page of website
-		Browser.openBrowserAndNavigateToUrl(testConfig, "https://staging2.crazyegg.com:8095/");
+		Browser.openBrowserAndNavigateToUrl(testConfig, url);
 		HomePage homePage = new HomePage(testConfig);
 		
 		//Navigate to Login Page
@@ -39,7 +49,7 @@ public class TestLoginFlows extends TestBase
 		recordingsDashboardPage.playFirstRecording(testConfig, false);
 	}
 	
-	@Test(dataProvider="getTestConfig", invocationCount=50, timeOut=3600000)
+	@Test(dataProvider="getTestConfig", invocationCount=5, timeOut=3600000)
 	public void testLoginFlowWithTableDetails(Config testConfig)
 	{
 		String username = "dev@dev.com";
