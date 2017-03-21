@@ -32,7 +32,7 @@ public class DashboardPage
 	
 	public void verifyDashboardPage(Config testConfig)
 	{
-		Helper.compareEquals(testConfig, "Main Heading on Page", "Manage your Snapshots", mainHeading.getText());
+		//Helper.compareEquals(testConfig, "Main Heading on Page", "Manage your Snapshots", mainHeading.getText());
 		
 		Browser.wait(testConfig, Helper.generateRandomNumber(35,55));
 		
@@ -76,19 +76,53 @@ public class DashboardPage
 	
 	public void verifyDetailsInTable(Config testConfig)
 	{
+		boolean isloggedIn = false;
+		int lastRow = 0;
+		int secondLastRow = 0;
 		TestDataReader testDataReader = testConfig.getExcelSheet("RECORDINGS");
 		for(int urlRow = 1; urlRow<36; urlRow++)
 		{
-			String url = testDataReader.getData(urlRow, "URL");
+			int row = Helper.generateRandomNumber(1,35);
+			if(row == lastRow)
+			{
+				row = Helper.generateRandomNumber(1,35);
+			}
+			else if(row == secondLastRow)
+			{
+				row = Helper.generateRandomNumber(1,35);
+			}
+			else
+			{
+				secondLastRow = lastRow;
+				lastRow = row;
+			}
+			
+			
+			String url = testDataReader.getData(row, "URL");
 			Browser.openBrowserAndNavigateToUrl(testConfig, url);
 			Browser.wait(testConfig, Helper.generateRandomNumber(115,150));
-			String value = Helper.generateRandomAlphaNumericString(Helper.generateRandomNumber(5,15));
-			System.out.println("Enter data : " + value);
 			
 			if(testConfig.enableWinum)
 			{
 				WebElement notepad = testConfig.driverWinium.findElementByClassName("Edit");
-				value = Helper.generateRandomAlphaNumericString(Helper.generateRandomNumber(5,15));
+				String value = Helper.generateRandomAlphaNumericString(Helper.generateRandomNumber(5,15));
+				System.out.println("Enter data : " + value);
+				notepad.sendKeys(value);
+			}
+			
+			if(url.contains("xohellobar"))
+			{
+				if(!isloggedIn)
+				{
+					verifyDashboardPage(testConfig);
+					isloggedIn = true;
+				}
+			}
+			
+			if(testConfig.enableWinum)
+			{
+				WebElement notepad = testConfig.driverWinium.findElementByClassName("Edit");
+				String value = Helper.generateRandomAlphaNumericString(Helper.generateRandomNumber(5,15));
 				System.out.println("Enter data : " + value);
 				notepad.sendKeys(value);
 				WebElement urlTextbox = testConfig.driverWinium.findElementByName("Address and search bar");
