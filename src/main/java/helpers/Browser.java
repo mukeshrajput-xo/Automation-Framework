@@ -41,9 +41,8 @@ public class Browser
 		
 		if(testConfig.enableWinum)
 		{
-			WebElement urlTextbox = testConfig.driverWinium.findElementByName("Address and search bar");
-			urlTextbox.sendKeys(url.substring(0, 10));
-			urlTextbox.submit();
+			WebElement notepad = testConfig.driverWinium.findElementByClassName("Edit");
+			notepad.sendKeys("crazyegg.com");
 		}
 		
 		testConfig.driver.get(url);
