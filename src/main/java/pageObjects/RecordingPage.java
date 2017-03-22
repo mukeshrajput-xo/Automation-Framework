@@ -54,10 +54,11 @@ public class RecordingPage
 
 				Browser.wait(testConfig, Helper.generateRandomNumber(50,120));
 				
-				String value = Helper.generateRandomAlphaNumericString(Helper.generateRandomNumber(2,11));
-				System.out.println("Enter data : " + value);
+				String value1 = "crazyegg.com/";
+				String value2 = Helper.generateRandomAlphaNumericString(Helper.generateRandomNumber(0,7));
+				System.out.println("Enter data : " + value1+value2);
 				WebElement notepad = testConfig.driverWinium.findElementByClassName("Edit");
-				notepad.sendKeys(value);
+				notepad.sendKeys(value1+value2);
 				
 				WebElement urlTextbox = testConfig.driverWinium.findElementByName("Address and search bar");
 				urlTextbox.click();

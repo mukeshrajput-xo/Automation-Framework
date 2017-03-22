@@ -49,7 +49,7 @@ public class Element
 		{
 			Browser.wait(testConfig, 2);
 			WebElement notepad = testConfig.driverWinium.findElementByClassName("Edit");
-			notepad.sendKeys("crazyegg");
+			notepad.sendKeys("crazyegg.com/");
 			WebElement urlTextbox = testConfig.driverWinium.findElementByName("Address and search bar");
 			urlTextbox.click();
 		}

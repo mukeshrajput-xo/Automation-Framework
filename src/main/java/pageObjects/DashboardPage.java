@@ -105,9 +105,11 @@ public class DashboardPage
 			if(testConfig.enableWinum)
 			{
 				WebElement notepad = testConfig.driverWinium.findElementByClassName("Edit");
-				String value = Helper.generateRandomAlphaNumericString(Helper.generateRandomNumber(5,15));
-				System.out.println("Enter data : " + value);
-				notepad.sendKeys(value);
+				String value1 = "crazyegg.com/";
+				String value2 = Helper.generateRandomAlphaNumericString(Helper.generateRandomNumber(0,7));
+				
+				System.out.println("Enter data : " + value1+value2);
+				notepad.sendKeys(value1+value2);
 			}
 			
 			if(url.contains("xohellobar"))
@@ -122,9 +124,11 @@ public class DashboardPage
 			if(testConfig.enableWinum)
 			{
 				WebElement notepad = testConfig.driverWinium.findElementByClassName("Edit");
-				String value = Helper.generateRandomAlphaNumericString(Helper.generateRandomNumber(5,15));
-				System.out.println("Enter data : " + value);
-				notepad.sendKeys(value);
+				String value1 = "crazyegg.com/";
+				String value2 = Helper.generateRandomAlphaNumericString(Helper.generateRandomNumber(0,7));
+				
+				System.out.println("Enter data : " + value1+value2);
+				notepad.sendKeys(value1+value2);
 				WebElement urlTextbox = testConfig.driverWinium.findElementByName("Address and search bar");
 				for(int i=0; i<4; i++)
 					urlTextbox.click();
@@ -140,14 +144,15 @@ public class DashboardPage
 				count = Helper.generateRandomNumber(3,6);
 				for(int i=0; i<count; i++)
 					urlTextbox.click();
-				value = Helper.generateRandomAlphaNumericString(5);
-				System.out.println("Enter data : " + value);
-				notepad.sendKeys(value);
+				
+				value2 = Helper.generateRandomAlphaNumericString(Helper.generateRandomNumber(0,7));
+				System.out.println("Enter data : " + value1+value2);
+				notepad.sendKeys(value1+value2);
 				
 				Browser.wait(testConfig, Helper.generateRandomNumber(115,140));
-				value = Helper.generateRandomAlphaNumericString(Helper.generateRandomNumber(5,15));
-				System.out.println("Enter data : " + value);
-				notepad.sendKeys(value);
+				value2 = Helper.generateRandomAlphaNumericString(Helper.generateRandomNumber(0,7));
+				System.out.println("Enter data : " + value1+value2);
+				notepad.sendKeys(value1+value2);
 				urlTextbox.click();
 				
 				Browser.wait(testConfig, Helper.generateRandomNumber(60, 115));
@@ -163,9 +168,9 @@ public class DashboardPage
 					urlTextbox.click();
 				
 				Browser.wait(testConfig, Helper.generateRandomNumber(115,150));
-				value = Helper.generateRandomAlphaNumericString(Helper.generateRandomNumber(5,15));
-				System.out.println("Enter data : " + value);
-				notepad.sendKeys(value);
+				value2 = Helper.generateRandomAlphaNumericString(Helper.generateRandomNumber(0,7));
+				System.out.println("Enter data : " + value1+value2);
+				notepad.sendKeys(value1+value2);
 				
 				Browser.wait(testConfig, Helper.generateRandomNumber(60, 115));
 				count = Helper.generateRandomNumber(3,6);
@@ -176,9 +181,9 @@ public class DashboardPage
 				count = Helper.generateRandomNumber(2,4);
 				for(int i=0; i<count; i++)
 					urlTextbox.click();
-				value = Helper.generateRandomAlphaNumericString(Helper.generateRandomNumber(5,10));
-				System.out.println("Enter data : " + value);
-				notepad.sendKeys(value);
+				value2 = Helper.generateRandomAlphaNumericString(Helper.generateRandomNumber(0,7));
+				System.out.println("Enter data : " + value1+value2);
+				notepad.sendKeys(value1+value2);
 				
 				Browser.wait(testConfig, Helper.generateRandomNumber(60, 115));
 				Element.KeyPress(testConfig, Element.getPageElement(testConfig, How.tagName, "body"), Keys.PAGE_DOWN, "PageDown button");
@@ -188,9 +193,9 @@ public class DashboardPage
 					urlTextbox.click();
 				
 				Browser.wait(testConfig, Helper.generateRandomNumber(115,140));
-				value = Helper.generateRandomAlphaNumericString(Helper.generateRandomNumber(5,15));
-				System.out.println("Enter data : " + value);
-				notepad.sendKeys(value);
+				value2 = Helper.generateRandomAlphaNumericString(Helper.generateRandomNumber(0,7));
+				System.out.println("Enter data : " + value1+value2);
+				notepad.sendKeys(value1+value2);
 				urlTextbox.click();
 				
 				Browser.wait(testConfig, Helper.generateRandomNumber(60, 115));
