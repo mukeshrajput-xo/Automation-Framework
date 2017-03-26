@@ -25,7 +25,7 @@ public class Appium
 		this.testConfig = testConfig;
 		openMobileApplication(testConfig);
 		
-//TODO	AndroidMobileActions.allowOrDenyAllPermissionsOnAndroidApp(this.testConfig, permissionAllowButton, "Allow permission");
+	AndroidMobileActions.allowOrDenyAllPermissionsOnAndroidApp(this.testConfig, permissionAllowButton, "Allow permission");
 //TODO	MobileActions.hideKeyboard(testConfig);
 	}
 	
@@ -118,94 +118,64 @@ public class Appium
 	private static AppiumDriver<MobileElement> getAppiumDriver(Config testConfig, DesiredCapabilities capabilities, String mobilePlatformName)
 	{
 		AppiumDriver<MobileElement> driver = null;
-		int tries = 10;	
-			while (tries > 0)
-			{		
-				try
+		int tries = 10;
+		
+		String appiumAddress = "127.0.0.1";
+		String appiumPort= "4723";
+		if (testConfig.remoteExecution)
+		{
+			appiumAddress = testConfig.getRunTimeProperty("RemoteAddress");
+			appiumPort = testConfig.getRunTimeProperty("RemoteHostPort");
+		}
+
+		testConfig.logComment("Starting Execution on : http://" + appiumAddress + ":" + appiumPort);
+		while (tries > 0)
+		{		
+			try
+			{
+				//startAppiumServer(testConfig, appiumAddress, appiumPort, mobilePlatformName);
+				
+				switch(mobilePlatformName)
 				{
-					if (testConfig.remoteExecution)
-					{
-						String remoteAddress = testConfig.getRunTimeProperty("RemoteAddress");
-						String remotePort = testConfig.getRunTimeProperty("RemoteHostPort");
-						testConfig.logComment("Start Execution on Remote : http://" + remoteAddress + ":" + remotePort);
-
-						switch(mobilePlatformName)
-						{
-							case "Android":
-								testConfig.androidDriver = new AndroidDriver<MobileElement>(new URL("http://"+ remoteAddress+":"+remotePort+"/wd/hub"), capabilities);
-								driver = testConfig.androidDriver;
-								break;
-							case "iOS":
-								testConfig.iosDriver = new IOSDriver<MobileElement>(new URL("http://"+ remoteAddress+":"+remotePort+"/wd/hub"), capabilities); 
-								driver = testConfig.iosDriver;
-								break;
-							default:						
-								driver= null;
-								testConfig.logFailToEndExecution("<-----Platform Type"+ mobilePlatformName +" Not defined----->");
-						}
-					}
-					else
-					{
-						String localAppiumAddress = "127.0.0.1";
-						String localAppiumPort= "4723";
-						testConfig.logComment("Start Execution on Local Machine: http://" + localAppiumAddress + ":" + localAppiumPort);
-
-						switch(mobilePlatformName)
-						{
-							case "Android":
-								startAppiumServer(testConfig,localAppiumAddress, localAppiumPort, mobilePlatformName);
-								testConfig.androidDriver = new AndroidDriver<MobileElement>(new URL("http://" + localAppiumAddress + ":" + localAppiumPort+"/wd/hub"), capabilities);
-								driver = testConfig.androidDriver;
-								break;
-							case "iOS":
-								startAppiumServer(testConfig,localAppiumAddress, localAppiumPort, mobilePlatformName);
-								testConfig.iosDriver = new IOSDriver<MobileElement>(new URL("http://" + localAppiumAddress + ":" + localAppiumPort+"/wd/hub"), capabilities);
-								driver = testConfig.iosDriver;
-								break;
-							default:
-								driver = null;
-								testConfig.logFailToEndExecution("<-----Platform Type"+ mobilePlatformName +" Not defined----->");
-						}
-					}
-					
-					if (driver == null)
-					{
-						closeApplication(testConfig);
-						tries--;
-					}
-					else
-					{
-						tries = 0;
-					}
+				case "Android":
+					testConfig.androidDriver = new AndroidDriver<MobileElement>(new URL("http://"+ appiumAddress+":"+appiumPort+"/wd/hub"), capabilities);
+					driver = testConfig.androidDriver;
+					break;
+				case "iOS":
+					testConfig.iosDriver = new IOSDriver<MobileElement>(new URL("http://"+ appiumAddress+":"+appiumPort+"/wd/hub"), capabilities); 
+					driver = testConfig.iosDriver;
+					break;
+				default:				
+					driver= null;
+					testConfig.logFailToEndExecution("<-----Platform Type"+ mobilePlatformName +" Not defined----->");
 				}
-				catch(Exception e)
+				
+				if (driver == null)
 				{
-					testConfig.logComment("=====>>Exception in getAppiumDriver, now trying again.... : " + e.getMessage());
 					closeApplication(testConfig);
 					tries--;
 				}
-			}// End of While
-			
-			if (driver == null)
-			{
-				testConfig.logFailToEndExecution("<-----Unable to get AndoidDriver/iosDriver----->");
+				else
+				{
+					tries = 0;
+				}
 			}
-			
-			testConfig.putRunTimeProperty("MobileUAFlag", "true");
-			testConfig.appiumDriver = driver;
-			return driver;
+			catch(Exception e)
+			{
+				testConfig.logComment("=====>>Exception in getAppiumDriver, now trying again.... : " + e.getMessage());
+				closeApplication(testConfig);
+				tries--;
+			}
+		}// End of While
+		
+		if (driver == null)
+			testConfig.logFailToEndExecution("<-----Unable to get AndoidDriver/iosDriver----->");
+		
+		testConfig.putRunTimeProperty("MobileUAFlag", "true");
+		testConfig.appiumDriver = driver;
+		return driver;
 	}
-	
-	    
 
-	
-	public void stopAppiumServer() 
-	{
-	    if (process != null) 
-	        process.destroy();
-
-	    System.out.println("Appium server stop");
-	}
 	
 	static Process process = null;
 	public static void startAppiumServer(Config testConfig, String localAppiumAddress, String localAppiumPort, String mobilePlatformName)
@@ -273,11 +243,10 @@ public class Appium
 			{
 				// Start Appium Server on Windows Machine
 				String appium_path = System.getenv("APPIUM_HOME");
-				Process appiumServer = null;
 				if (appium_path == null)
 				{
 					testConfig.logComment("Appium Home Has not been set");
-					appiumServer = runtime.exec(ADB_serverStart+" -a "+localAppiumAddress+" -p "+localAppiumPort);
+					process = runtime.exec(ADB_serverStart+" -a "+localAppiumAddress+" -p "+localAppiumPort);
 				}
 				else
 				{
@@ -288,7 +257,7 @@ public class Appium
 					// commandToExecute += " -U " + "015d4b10091bee15";// To get a particular device
 					
 					testConfig.logComment("Running Command " + commandToExecute);
-					appiumServer = runtime.exec(commandToExecute);
+					process = runtime.exec(commandToExecute);
 				}
 			}
 		}
@@ -299,9 +268,15 @@ public class Appium
 		}
 	}
 	
-	/**Closes application/browser opened
-	 * @param testConfig
-	 */
+	public void stopAppiumServer() 
+	{
+	    if (process != null) 
+	        process.destroy();
+
+	    System.out.println("Appium server stop");
+	}
+	
+
 	public static void closeApplication(Config testConfig)
 	{
 		try
