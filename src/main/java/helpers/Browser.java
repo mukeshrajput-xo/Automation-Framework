@@ -82,7 +82,9 @@ public class Browser
 
 			case "chrome":
 				System.setProperty("webdriver.chrome.driver", "lib" + File.separator + "chromedriver.exe");
+				
 				ChromeOptions chromeOptions = new ChromeOptions();
+				chromeOptions.addExtensions(new File("lib" + File.separator + "AdBlock.crx"));
 				chromeOptions.addArguments("disable-infobars");
 				//chromeOptions.addArguments("--kiosk");
 				//chromeOptions.addArguments("--start-maximized");
