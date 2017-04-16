@@ -92,6 +92,7 @@ public class Browser
 				capabilities.setCapability("version", browserVersion);
 				driver = new ChromeDriver(capabilities);
 
+				Browser.wait(testConfig, 3);
 				String originalHandle = driver.getWindowHandle();
 			    for(String handle : driver.getWindowHandles()) {
 			        if (!handle.equals(originalHandle)) {
