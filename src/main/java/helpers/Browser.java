@@ -94,6 +94,14 @@ public class Browser
 				driver = new ChromeDriver(capabilities);
 				driver.manage().window().setPosition(new Point(0, 0));
 				driver.manage().window().setSize(new Dimension(1280,900));
+				String originalHandle = driver.getWindowHandle();
+			    for(String handle : driver.getWindowHandles()) {
+			        if (!handle.equals(originalHandle)) {
+			            driver.switchTo().window(handle);
+			            driver.close();
+			        }
+			    }
+			    driver.switchTo().window(originalHandle);
 				break;
 				
 			case "safari":
