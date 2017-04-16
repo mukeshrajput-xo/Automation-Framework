@@ -12,7 +12,6 @@ import java.util.concurrent.TimeUnit;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.OutputType;
-import org.openqa.selenium.Point;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -63,11 +62,10 @@ public class Browser
 		{
 			DesktopOptions options = new DesktopOptions();
 			//options.setApplicationPath("C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe");
-			options.setApplicationPath("C:\\xo2\\xo_automation\\ReadMe.txt");
+			options.setApplicationPath(System.getProperty("user.dir") + File.separator + "ReadMe.txt");
 			try {
 				testConfig.driverWinium = new WiniumDriver(new URL("http://localhost:9999"),options);
 			} catch (MalformedURLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -92,8 +90,6 @@ public class Browser
 				capabilities.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
 				capabilities.setCapability("version", browserVersion);
 				driver = new ChromeDriver(capabilities);
-				driver.manage().window().setPosition(new Point(0, 0));
-				driver.manage().window().setSize(new Dimension(1280,900));
 				String originalHandle = driver.getWindowHandle();
 			    for(String handle : driver.getWindowHandles()) {
 			        if (!handle.equals(originalHandle)) {
