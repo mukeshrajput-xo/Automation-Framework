@@ -139,31 +139,23 @@ public class Browser
 	
 	public static void takeScreenshot(Config testConfig)
 	{
-		if(testConfig.driver != null)
-		{
-			File screenshotUrl = getScreenShotFile(testConfig);
-			byte[] screenshot = ((TakesScreenshot)testConfig.driver).getScreenshotAs(OutputType.BYTES);
-			try {
-				FileUtils.writeByteArrayToFile(screenshotUrl, screenshot);
-			} catch (IOException e) {
-				System.out.println("=====>>Unable to take screenshot...");
-				e.printStackTrace();
-			}
-			
-			String href = convertFilePathToHtmlUrl(screenshotUrl.getPath());
-			testConfig.logComment("<B>Screenshot</B>:- <a href=" + href + " target='_blank' >" + screenshotUrl.getName() + "</a>");
-			testConfig.logComment("<B>Page URL</B>:- <a href=" + testConfig.driver.getCurrentUrl() + " target='_blank' >" + testConfig.driver.getCurrentUrl() + "</a>");
-		}
-		else
-		{
-			testConfig.logComment("Browser is NOT open, so unable to take screenshot");
+		File screenshotUrl = getScreenShotFile(testConfig);
+		byte[] screenshot = ((TakesScreenshot)testConfig.driver).getScreenshotAs(OutputType.BYTES);
+		try {
+			FileUtils.writeByteArrayToFile(screenshotUrl, screenshot);
+		} catch (IOException e) {
+			System.out.println("=====>>Unable to take screenshot...");
+			e.printStackTrace();
 		}
 		
+		String href = convertFilePathToHtmlUrl(screenshotUrl.getPath());
+		testConfig.logComment("<B>Screenshot</B>:- <a href=" + href + " target='_blank' >" + screenshotUrl.getName() + "</a>");
+		testConfig.logComment("<B>Page URL</B>:- <a href=" + testConfig.driver.getCurrentUrl() + " target='_blank' >" + testConfig.driver.getCurrentUrl() + "</a>");
 	}
 	
 	private static File getResultsDirectory(Config testConfig)
 	{
-		File dest = new File(testConfig.getRunTimeProperty("ResultsDir") + File.separator + "html" + File.separator );
+		File dest = new File(System.getProperty("user.dir") + File.separator + "test-output" + File.separator + "html" + File.separator );
 		return dest;
 	}
 	
