@@ -43,6 +43,7 @@ public class Browser
 		{
 			WebElement notepad = testConfig.driverWinium.findElementByClassName("Edit");
 			notepad.sendKeys("crazyegg.com");
+			notepad.submit();
 		}
 		
 		testConfig.driver.get(url);
@@ -62,7 +63,7 @@ public class Browser
 		{
 			DesktopOptions options = new DesktopOptions();
 			//options.setApplicationPath("C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe");
-			options.setApplicationPath("C:\\Windows\\notepad.exe");
+			options.setApplicationPath("C:\\xo2\\xo_automation\\ReadMe.txt");
 			try {
 				testConfig.driverWinium = new WiniumDriver(new URL("http://localhost:9999"),options);
 			} catch (MalformedURLException e) {
@@ -82,6 +83,7 @@ public class Browser
 			case "chrome":
 				System.setProperty("webdriver.chrome.driver", "lib" + File.separator + "chromedriver.exe");
 				ChromeOptions chromeOptions = new ChromeOptions();
+				chromeOptions.addArguments("disable-infobars");
 				//chromeOptions.addArguments("--kiosk");
 				//chromeOptions.addArguments("--start-maximized");
 				capabilities = DesiredCapabilities.chrome();
@@ -114,7 +116,8 @@ public class Browser
 			default:
 				break;
 		}
-		driver.manage().window().maximize();
+		driver.manage().window().setSize(new Dimension(1280,750));
+		//driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
 		testConfig.driver = driver;
 	}
