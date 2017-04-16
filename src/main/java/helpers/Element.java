@@ -6,6 +6,11 @@ import org.openqa.selenium.WebElement;
 public class Element 
 {
 
+	public static enum How
+	{
+		className, css, id, linkText, name, partialLinkText, tagName, xPath, accessibility
+	};
+	
 	public static void click(Config testConfig, WebElement element, String description)
 	{
 		testConfig.logComment("Click on '" + description + "'");
