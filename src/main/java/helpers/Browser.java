@@ -12,6 +12,7 @@ import java.util.concurrent.TimeUnit;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.OutputType;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -90,6 +91,7 @@ public class Browser
 				capabilities.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
 				capabilities.setCapability("version", browserVersion);
 				driver = new ChromeDriver(capabilities);
+
 				String originalHandle = driver.getWindowHandle();
 			    for(String handle : driver.getWindowHandles()) {
 			        if (!handle.equals(originalHandle)) {
@@ -122,8 +124,11 @@ public class Browser
 			default:
 				break;
 		}
-		driver.manage().window().setSize(new Dimension(1280,750));
+		
 		//driver.manage().window().maximize();
+		driver.manage().window().setPosition(new Point(0, 0));
+		driver.manage().window().setSize(new Dimension(1280,750));
+
 		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
 		testConfig.driver = driver;
 	}
