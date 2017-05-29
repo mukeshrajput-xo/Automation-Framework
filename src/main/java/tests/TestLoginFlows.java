@@ -15,20 +15,20 @@ import pageObjects.RecordingsDashboardPage;
 public class TestLoginFlows extends TestBase
 {
 	
-	@Test(dataProvider="getTestConfig", invocationCount=1, timeOut=3600000, priority=1)
+	@Test(dataProvider="getTestConfig", invocationCount=5, timeOut=3600000, priority=1)
 	public void testSimpleLoginFlow(Config testConfig)
 	{
 		
-		boolean production = true;
-		
-		String username = "dev@dev.com";
+		String username = "nxgensystem473@gmail.com";
 		String password = "developer";
 		String url = "https://staging2.crazyegg.com:8095/";
-		if(production)
+		
+		boolean isProduction = true;
+		if(isProduction)
 		{
 			username = "john@likealightbulb.com";
 			password = "7ismyPassword";
-			url = "https://www.crazyegg.com/";
+			testConfig.putRunTimeProperty("isProduction", "true");
 		}
 		
 		//Launch Browser and Navigate to Home page of website
@@ -49,14 +49,23 @@ public class TestLoginFlows extends TestBase
 		recordingsDashboardPage.playFirstRecording(testConfig, false);
 	}
 	
-	@Test(dataProvider="getTestConfig", invocationCount=1, timeOut=3600000, priority=2)
+	@Test(dataProvider="getTestConfig", invocationCount=5, timeOut=3600000, priority=2)
 	public void testLoginFlowWithTableDetails(Config testConfig)
 	{
-		String username = "dev@dev.com";
+		String username = "nxgensystem473@gmail.com";
 		String password = "developer";
+		String url = "https://staging2.crazyegg.com:8095/";
+		
+		boolean isProduction = true;
+		if(isProduction)
+		{
+			username = "john@likealightbulb.com";
+			password = "7ismyPassword";
+			testConfig.putRunTimeProperty("isProduction", "true");
+		}
 		
 		//Launch Browser and Navigate to Home page of website
-		Browser.openBrowserAndNavigateToUrl(testConfig, "https://staging2.crazyegg.com:8095/");
+		Browser.openBrowserAndNavigateToUrl(testConfig, url);
 		HomePage homePage = new HomePage(testConfig);
 		
 		//Navigate to Login Page
@@ -69,7 +78,7 @@ public class TestLoginFlows extends TestBase
 		
 		dashboardPage.verifyDetailsInTable(testConfig);
 	}
-	
+/*	
 	@Test(dataProvider="getTestConfig", invocationCount=1, timeOut=3600000, priority=3)
 	public void testSimpleLoginFlow3(Config testConfig)
 	{
@@ -83,7 +92,7 @@ public class TestLoginFlows extends TestBase
 		{
 			username = "john@likealightbulb.com";
 			password = "7ismyPassword";
-			url = "https://www.crazyegg.com/";
+			testConfig.putRunTimeProperty("isProduction", "true");
 		}
 		
 		//Launch Browser and Navigate to Home page of website
@@ -138,7 +147,7 @@ public class TestLoginFlows extends TestBase
 		{
 			username = "john@likealightbulb.com";
 			password = "7ismyPassword";
-			url = "https://www.crazyegg.com/";
+			testConfig.putRunTimeProperty("isProduction", "true");
 		}
 		
 		//Launch Browser and Navigate to Home page of website
@@ -193,7 +202,7 @@ public class TestLoginFlows extends TestBase
 		{
 			username = "john@likealightbulb.com";
 			password = "7ismyPassword";
-			url = "https://www.crazyegg.com/";
+			testConfig.putRunTimeProperty("isProduction", "true");
 		}
 		
 		//Launch Browser and Navigate to Home page of website
@@ -248,7 +257,7 @@ public class TestLoginFlows extends TestBase
 		{
 			username = "john@likealightbulb.com";
 			password = "7ismyPassword";
-			url = "https://www.crazyegg.com/";
+			testConfig.putRunTimeProperty("isProduction", "true");
 		}
 		
 		//Launch Browser and Navigate to Home page of website
@@ -288,5 +297,5 @@ public class TestLoginFlows extends TestBase
 		DashboardPage dashboardPage = (DashboardPage) loginPage.Login(testConfig, username, password, ExpectedLandingPageAfterLogin.DashboardPage);
 		
 		dashboardPage.verifyDetailsInTable(testConfig);
-	}
+	}*/
 }

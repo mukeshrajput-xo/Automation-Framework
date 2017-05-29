@@ -18,7 +18,7 @@ public class RecordingsDashboardPage
 	@FindBy(css=".headline")
 	private WebElement mainHeading;
 	
-	@FindBy(css="tbody>tr:first-child>th>a")
+	@FindBy(css="table>tbody>tr:first-child>td:first-child>a")
 	private WebElement firstRecording;
 	
 	public RecordingsDashboardPage(Config testConfig)

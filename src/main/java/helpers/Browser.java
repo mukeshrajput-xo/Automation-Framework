@@ -46,6 +46,13 @@ public class Browser
 			notepad.submit();
 		}
 		
+		if(testConfig.getRunTimeProperty("isProduction")!=null)
+		{
+			if(url.contains("staging2.crazyegg.com:8095"))
+				url = url.replace("staging2.crazyegg.com:8095", "app.crazyegg.com");
+
+		}
+		
 		testConfig.driver.get(url);
 	}
 	
@@ -92,7 +99,7 @@ public class Browser
 				capabilities.setCapability("version", browserVersion);
 				driver = new ChromeDriver(capabilities);
 
-				Browser.wait(testConfig, 3);
+				Browser.wait(testConfig, 10);
 				String originalHandle = driver.getWindowHandle();
 			    for(String handle : driver.getWindowHandles()) {
 			        if (!handle.equals(originalHandle)) {
@@ -128,7 +135,7 @@ public class Browser
 		
 		//driver.manage().window().maximize();
 		driver.manage().window().setPosition(new Point(0, 0));
-		driver.manage().window().setSize(new Dimension(1280,750));
+		driver.manage().window().setSize(new Dimension(1366,730));
 
 		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
 		testConfig.driver = driver;
