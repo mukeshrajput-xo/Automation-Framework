@@ -80,7 +80,7 @@ public class DashboardPage
 		int lastRow = 0;
 		int secondLastRow = 0;
 		TestDataReader testDataReader = testConfig.getExcelSheet("RECORDINGS");
-		for(int urlRow = 1; urlRow<36; urlRow++)
+		for(int urlRow = 1; urlRow<81; urlRow++)
 		{
 			int row = Helper.generateRandomNumber(1,35);
 			if(row == lastRow)

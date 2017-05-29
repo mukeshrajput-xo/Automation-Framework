@@ -75,7 +75,7 @@ public class RecordingPage
 				{
 					String oldUrl = testConfig.driver.getCurrentUrl();
 					TestDataReader testDataReader = testConfig.getExcelSheet("RECORDINGS");
-					String url = testDataReader.getData(Helper.generateRandomNumber(1,35), "URL");
+					String url = testDataReader.getData(Helper.generateRandomNumber(1,81), "URL");
 					
 					Browser.openBrowserAndNavigateToUrl(testConfig, url);
 					
