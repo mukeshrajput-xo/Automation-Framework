@@ -82,14 +82,14 @@ public class DashboardPage
 		TestDataReader testDataReader = testConfig.getExcelSheet("RECORDINGS");
 		for(int urlRow = 1; urlRow<81; urlRow++)
 		{
-			int row = Helper.generateRandomNumber(1,35);
+			int row = Helper.generateRandomNumber(1,81);
 			if(row == lastRow)
 			{
-				row = Helper.generateRandomNumber(1,35);
+				row = Helper.generateRandomNumber(1,81);
 			}
 			else if(row == secondLastRow)
 			{
-				row = Helper.generateRandomNumber(1,35);
+				row = Helper.generateRandomNumber(1,81);
 			}
 			else
 			{
