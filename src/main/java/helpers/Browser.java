@@ -99,7 +99,7 @@ public class Browser
 				capabilities.setCapability("version", browserVersion);
 				driver = new ChromeDriver(capabilities);
 
-				Browser.wait(testConfig, 10);
+				Browser.wait(testConfig, 5);
 				String originalHandle = driver.getWindowHandle();
 			    for(String handle : driver.getWindowHandles()) {
 			        if (!handle.equals(originalHandle)) {
@@ -136,6 +136,7 @@ public class Browser
 		//driver.manage().window().maximize();
 		driver.manage().window().setPosition(new Point(0, 0));
 		driver.manage().window().setSize(new Dimension(1366,730));
+		//driver.manage().window().setSize(new Dimension(1280,745)); - remote machine
 
 		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
 		testConfig.driver = driver;
