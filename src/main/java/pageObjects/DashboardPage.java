@@ -77,6 +77,7 @@ public class DashboardPage
 	public void verifyDetailsInTable(Config testConfig)
 	{
 		boolean isloggedIn = false;
+		boolean isGitHubLoggedIn = false;
 		int lastRow = 0;
 		int secondLastRow = 0;
 		int thirdLastRow = 0;
@@ -93,12 +94,16 @@ public class DashboardPage
 			{
 				row = Helper.generateRandomNumber(1,81);
 			}
+			else if(row == thirdLastRow)
+			{
+				row = Helper.generateRandomNumber(1,81);
+			}
 			else
 			{
+				thirdLastRow = secondLastRow;
 				secondLastRow = lastRow;
 				lastRow = row;
 			}
-			
 			
 			String url = testDataReader.getData(row, "URL");
 			Browser.openBrowserAndNavigateToUrl(testConfig, url);
@@ -120,6 +125,15 @@ public class DashboardPage
 				{
 					verifyDashboardPage(testConfig);
 					isloggedIn = true;
+				}
+			}
+			
+			if(url.contains("github.com"))
+			{
+				if(!isGitHubLoggedIn)
+				{
+					loginCrazyEggGitHub(testConfig);
+					isGitHubLoggedIn = true;
 				}
 			}
 			
@@ -201,5 +215,23 @@ public class DashboardPage
 		Element.click(testConfig, recordingsTab, "Recordings Tab");
 		
 		return new RecordingsDashboardPage(testConfig);
+	}
+	
+	private void loginCrazyEggGitHub(Config testConfig)
+	{
+		WebElement username = Element.getPageElement(testConfig, How.css, "#login_field");
+		String user = "mukesh.rajput@crossover.com";
+		Element.enterData(testConfig, username, user, "Username");
+		
+		Browser.wait(testConfig, 2);
+		
+		WebElement password = Element.getPageElement(testConfig, How.css, "#password");
+		String pswd = "Mukesh@12345";
+		Element.enterData(testConfig, password, pswd, "Password");
+		
+		WebElement loginBtn = Element.getPageElement(testConfig, How.css, ".btn.btn-primary.btn-block");
+		Element.click(testConfig, loginBtn, "Login Button");
+		
+		Browser.wait(testConfig, 10);
 	}
 }
