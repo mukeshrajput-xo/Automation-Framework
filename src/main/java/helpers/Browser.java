@@ -41,9 +41,11 @@ public class Browser
 		
 		if(testConfig.enableWinum)
 		{
-			WebElement notepad = testConfig.driverWinium.findElementByClassName("Edit");
-			notepad.sendKeys("crazyegg.com");
-			notepad.submit();
+
+			String value2 = Helper.generateRandomAlphaNumericString(Helper.generateRandomNumber(2,7));
+			System.out.println("Enter data in openBrowserAndNavigateToUrl : " + "crazyegg.com"+value2);
+			testConfig.driverWinium.findElementByClassName("Edit").sendKeys("crazyegg.com"+value2);
+			Browser.wait(testConfig, 1);
 			testConfig.driverWinium.findElementByName("Address and search bar").click();
 		}
 		

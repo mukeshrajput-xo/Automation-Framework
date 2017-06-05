@@ -144,11 +144,10 @@ public class DashboardPage
 				
 				System.out.println("Enter data : " + value1+value2);
 				testConfig.driverWinium.findElementByClassName("Edit").sendKeys(value1+value2);
-				WebElement urlTextbox = testConfig.driverWinium.findElementByName("Address and search bar");
 				for(int i=0; i<4; i++)
 				{
 					Browser.wait(testConfig, 1);
-					urlTextbox.click();
+					testConfig.driverWinium.findElementByName("Address and search bar").click();
 				}
 				
 				Browser.wait(testConfig, Helper.generateRandomNumber(45, 95));
@@ -156,7 +155,7 @@ public class DashboardPage
 				for(int i=0; i<count; i++)
 				{
 					Browser.wait(testConfig, 1);
-					urlTextbox.click();
+					testConfig.driverWinium.findElementByName("Address and search bar").click();
 				}
 				
 				Browser.wait(testConfig, Helper.generateRandomNumber(45, 95));
@@ -166,7 +165,7 @@ public class DashboardPage
 				for(int i=0; i<count; i++)
 				{
 					Browser.wait(testConfig, 1);
-					urlTextbox.click();
+					testConfig.driverWinium.findElementByName("Address and search bar").click();
 				}
 				
 				value2 = Helper.generateRandomAlphaNumericString(Helper.generateRandomNumber(2,7));
@@ -185,7 +184,7 @@ public class DashboardPage
 				for(int i=0; i<count; i++)
 				{
 					Browser.wait(testConfig, 1);
-					urlTextbox.click();
+					testConfig.driverWinium.findElementByName("Address and search bar").click();
 				}
 				
 				Browser.wait(testConfig, Helper.generateRandomNumber(45, 95));
@@ -195,7 +194,7 @@ public class DashboardPage
 				for(int i=0; i<count; i++)
 				{
 					Browser.wait(testConfig, 1);
-					urlTextbox.click();
+					testConfig.driverWinium.findElementByName("Address and search bar").click();
 				}
 				
 				Browser.wait(testConfig, Helper.generateRandomNumber(85,110));
@@ -209,7 +208,7 @@ public class DashboardPage
 				for(int i=0; i<count; i++)
 				{
 					Browser.wait(testConfig, 1);
-					urlTextbox.click();
+					testConfig.driverWinium.findElementByName("Address and search bar").click();
 				}
 				
 				value2 = Helper.generateRandomAlphaNumericString(Helper.generateRandomNumber(2,7));
@@ -222,7 +221,7 @@ public class DashboardPage
 				for(int i=0; i<count; i++)
 				{
 					Browser.wait(testConfig, 1);
-					urlTextbox.click();
+					testConfig.driverWinium.findElementByName("Address and search bar").click();
 				}
 			}
 			else
