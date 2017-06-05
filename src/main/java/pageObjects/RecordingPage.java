@@ -56,19 +56,19 @@ public class RecordingPage
 				
 				String value1 = "crazyegg.com/";
 				String value2 = Helper.generateRandomAlphaNumericString(Helper.generateRandomNumber(0,7));
-				System.out.println("Enter data : " + value1+value2);
-				WebElement notepad = testConfig.driverWinium.findElementByClassName("Edit");
-				notepad.sendKeys(value1+value2);
-				
-				WebElement urlTextbox = testConfig.driverWinium.findElementByName("Address and search bar");
-				urlTextbox.click();
+				System.out.println("Enter data in playThisRecording : " + value1+value2);
+				testConfig.driverWinium.findElementByClassName("Edit").sendKeys(value1+value2);
+				Browser.wait(testConfig, 1);
+				testConfig.driverWinium.findElementByName("Address and search bar").click();
+				System.out.println("Click in playThisRecording1");
 				
 				Browser.wait(testConfig, Helper.generateRandomNumber(5, 20));
 				int count = Helper.generateRandomNumber(1,5);
 				for(int i=0; i<count; i++)
 				{
 					Browser.wait(testConfig, 1);
-					urlTextbox.click();
+					testConfig.driverWinium.findElementByName("Address and search bar").click();
+					System.out.println("Click in playThisRecording2");
 				}				
 				
 				String min = Helper.getCurrentTime("mm");
@@ -78,14 +78,14 @@ public class RecordingPage
 					String oldUrl = testConfig.driver.getCurrentUrl();
 					TestDataReader testDataReader = testConfig.getExcelSheet("RECORDINGS");
 					String url = testDataReader.getData(Helper.generateRandomNumber(1,81), "URL");
-					
 					Browser.openBrowserAndNavigateToUrl(testConfig, url);
 					
 					int counter = Helper.generateRandomNumber(1,5);
 					for(int i=0; i<counter; i++)
 					{
 						Browser.wait(testConfig, 1);
-						urlTextbox.click();
+						testConfig.driverWinium.findElementByName("Address and search bar").click();
+						System.out.println("Click in playThisRecording3");
 					}
 					
 					Browser.wait(testConfig, Helper.generateRandomNumber(45, 100));

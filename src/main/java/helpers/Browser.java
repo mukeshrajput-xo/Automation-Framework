@@ -47,6 +47,7 @@ public class Browser
 			testConfig.driverWinium.findElementByClassName("Edit").sendKeys("crazyegg.com"+value2);
 			Browser.wait(testConfig, 1);
 			testConfig.driverWinium.findElementByName("Address and search bar").click();
+			System.out.println("Click in openBrowserAndNavigateToUrl");
 		}
 		
 		if(testConfig.getRunTimeProperty("isProduction")!=null)

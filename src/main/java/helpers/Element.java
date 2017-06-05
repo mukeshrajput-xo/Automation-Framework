@@ -31,12 +31,12 @@ public class Element
 		
 		if(testConfig.enableWinum)
 		{
-			WebElement urlTextbox = testConfig.driverWinium.findElementByName("Address and search bar");
 			int count = Helper.generateRandomNumber(1,5);
 			for(int i=0; i<count; i++)
 			{
 				Browser.wait(testConfig, 1);
-				urlTextbox.click();
+				testConfig.driverWinium.findElementByName("Address and search bar").click();
+				System.out.println("Click in click");
 			}
 		}
 	}
@@ -51,9 +51,11 @@ public class Element
 		if(testConfig.enableWinum)
 		{
 			Browser.wait(testConfig, 2);
-			WebElement notepad = testConfig.driverWinium.findElementByClassName("Edit");
-			notepad.sendKeys("crazyegg.com/");
+			System.out.println("Enter data in enterData : crazyegg.com E");
+			testConfig.driverWinium.findElementByClassName("Edit").sendKeys("crazyegg.com E");
+			Browser.wait(testConfig, 1);
 			testConfig.driverWinium.findElementByName("Address and search bar").click();
+			System.out.println("Click in enterData");
 		}
 	}
 	
