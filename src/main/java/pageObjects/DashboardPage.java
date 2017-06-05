@@ -111,12 +111,12 @@ public class DashboardPage
 			
 			if(testConfig.enableWinum)
 			{
-				WebElement notepad = testConfig.driverWinium.findElementByClassName("Edit");
 				String value1 = "crazyegg.com/";
 				String value2 = Helper.generateRandomAlphaNumericString(Helper.generateRandomNumber(2,7));
 				
 				System.out.println("Enter data : " + value1+value2);
-				notepad.sendKeys(value1+value2);
+				testConfig.driverWinium.findElementByClassName("Edit").sendKeys(value1+value2);
+				testConfig.driverWinium.findElementByName("Address and search bar").click();
 			}
 			
 			if(url.contains("xohellobar"))
@@ -139,68 +139,91 @@ public class DashboardPage
 			
 			if(testConfig.enableWinum)
 			{
-				WebElement notepad = testConfig.driverWinium.findElementByClassName("Edit");
 				String value1 = "crazyegg.com/";
 				String value2 = Helper.generateRandomAlphaNumericString(Helper.generateRandomNumber(2,7));
 				
 				System.out.println("Enter data : " + value1+value2);
-				notepad.sendKeys(value1+value2);
+				testConfig.driverWinium.findElementByClassName("Edit").sendKeys(value1+value2);
 				WebElement urlTextbox = testConfig.driverWinium.findElementByName("Address and search bar");
 				for(int i=0; i<4; i++)
+				{
+					Browser.wait(testConfig, 1);
 					urlTextbox.click();
+				}
 				
 				Browser.wait(testConfig, Helper.generateRandomNumber(45, 95));
 				int count = Helper.generateRandomNumber(3,6);
 				for(int i=0; i<count; i++)
+				{
+					Browser.wait(testConfig, 1);
 					urlTextbox.click();
+				}
 				
 				Browser.wait(testConfig, Helper.generateRandomNumber(45, 95));
 				Element.KeyPress(testConfig, Element.getPageElement(testConfig, How.tagName, "body"), Keys.PAGE_DOWN, "PageDown button");
 				Element.KeyPress(testConfig, Element.getPageElement(testConfig, How.tagName, "body"), Keys.PAGE_DOWN, "Escape button");
 				count = Helper.generateRandomNumber(3,6);
 				for(int i=0; i<count; i++)
+				{
+					Browser.wait(testConfig, 1);
 					urlTextbox.click();
+				}
 				
 				value2 = Helper.generateRandomAlphaNumericString(Helper.generateRandomNumber(2,7));
 				System.out.println("Enter data : " + value1+value2);
-				notepad.sendKeys(value1+value2);
+				testConfig.driverWinium.findElementByClassName("Edit").sendKeys(value1+value2);
+				testConfig.driverWinium.findElementByName("Address and search bar").click();
 				
 				Browser.wait(testConfig, Helper.generateRandomNumber(85,110));
 				value2 = Helper.generateRandomAlphaNumericString(Helper.generateRandomNumber(2,7));
 				System.out.println("Enter data : " + value1+value2);
-				notepad.sendKeys(value1+value2);
-				urlTextbox.click();
+				testConfig.driverWinium.findElementByClassName("Edit").sendKeys(value1+value2);
+				testConfig.driverWinium.findElementByName("Address and search bar").click();
 				
 				Browser.wait(testConfig, Helper.generateRandomNumber(45, 95));
 				count = Helper.generateRandomNumber(3,6);
 				for(int i=0; i<count; i++)
+				{
+					Browser.wait(testConfig, 1);
 					urlTextbox.click();
+				}
 				
 				Browser.wait(testConfig, Helper.generateRandomNumber(45, 95));
 				Element.KeyPress(testConfig, Element.getPageElement(testConfig, How.tagName, "body"), Keys.PAGE_DOWN, "PageDown button");
 				Element.KeyPress(testConfig, Element.getPageElement(testConfig, How.tagName, "body"), Keys.PAGE_DOWN, "Escape button");
 				count = Helper.generateRandomNumber(3,6);
 				for(int i=0; i<count; i++)
+				{
+					Browser.wait(testConfig, 1);
 					urlTextbox.click();
+				}
 				
 				Browser.wait(testConfig, Helper.generateRandomNumber(85,110));
 				value2 = Helper.generateRandomAlphaNumericString(Helper.generateRandomNumber(2,7));
 				System.out.println("Enter data : " + value1+value2);
-				notepad.sendKeys(value1+value2);
+				testConfig.driverWinium.findElementByClassName("Edit").sendKeys(value1+value2);
+				testConfig.driverWinium.findElementByName("Address and search bar").click();
 				
 				Browser.wait(testConfig, Helper.generateRandomNumber(45, 95));
 				count = Helper.generateRandomNumber(3,6);
 				for(int i=0; i<count; i++)
+				{
+					Browser.wait(testConfig, 1);
 					urlTextbox.click();
+				}
 				
 				value2 = Helper.generateRandomAlphaNumericString(Helper.generateRandomNumber(2,7));
 				System.out.println("Enter data : " + value1+value2);
-				notepad.sendKeys(value1+value2);
+				testConfig.driverWinium.findElementByClassName("Edit").sendKeys(value1+value2);
+				testConfig.driverWinium.findElementByName("Address and search bar").click();
 				
 				Browser.wait(testConfig, Helper.generateRandomNumber(45, 95));
 				count = Helper.generateRandomNumber(2,4);
 				for(int i=0; i<count; i++)
+				{
+					Browser.wait(testConfig, 1);
 					urlTextbox.click();
+				}
 			}
 			else
 			{

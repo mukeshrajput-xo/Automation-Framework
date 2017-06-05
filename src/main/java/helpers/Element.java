@@ -34,7 +34,10 @@ public class Element
 			WebElement urlTextbox = testConfig.driverWinium.findElementByName("Address and search bar");
 			int count = Helper.generateRandomNumber(1,5);
 			for(int i=0; i<count; i++)
+			{
+				Browser.wait(testConfig, 1);
 				urlTextbox.click();
+			}
 		}
 	}
 	
@@ -50,8 +53,7 @@ public class Element
 			Browser.wait(testConfig, 2);
 			WebElement notepad = testConfig.driverWinium.findElementByClassName("Edit");
 			notepad.sendKeys("crazyegg.com/");
-			WebElement urlTextbox = testConfig.driverWinium.findElementByName("Address and search bar");
-			urlTextbox.click();
+			testConfig.driverWinium.findElementByName("Address and search bar").click();
 		}
 	}
 	

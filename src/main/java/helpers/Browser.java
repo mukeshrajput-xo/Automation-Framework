@@ -44,6 +44,7 @@ public class Browser
 			WebElement notepad = testConfig.driverWinium.findElementByClassName("Edit");
 			notepad.sendKeys("crazyegg.com");
 			notepad.submit();
+			testConfig.driverWinium.findElementByName("Address and search bar").click();
 		}
 		
 		if(testConfig.getRunTimeProperty("isProduction")!=null)

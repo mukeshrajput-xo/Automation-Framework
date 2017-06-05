@@ -66,8 +66,10 @@ public class RecordingPage
 				Browser.wait(testConfig, Helper.generateRandomNumber(5, 20));
 				int count = Helper.generateRandomNumber(1,5);
 				for(int i=0; i<count; i++)
+				{
+					Browser.wait(testConfig, 1);
 					urlTextbox.click();
-				
+				}				
 				
 				String min = Helper.getCurrentTime("mm");
 				int minValue = Integer.parseInt(min);
@@ -81,9 +83,12 @@ public class RecordingPage
 					
 					int counter = Helper.generateRandomNumber(1,5);
 					for(int i=0; i<counter; i++)
+					{
+						Browser.wait(testConfig, 1);
 						urlTextbox.click();
-					Browser.wait(testConfig, Helper.generateRandomNumber(45, 100));
+					}
 					
+					Browser.wait(testConfig, Helper.generateRandomNumber(45, 100));
 					Browser.openBrowserAndNavigateToUrl(testConfig, oldUrl);
 					RecordingPage recordingPage = new RecordingPage(testConfig);
 					
