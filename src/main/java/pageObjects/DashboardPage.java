@@ -77,7 +77,7 @@ public class DashboardPage
 				System.out.println("Click in verifyDetailsInTable1");
 			}
 			
-			if(url.contains("xohellobar"))
+			if(url.contains("xohellobar") && !url.contains("/wiki/"))
 			{
 				if(!isloggedIn)
 				{

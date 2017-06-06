@@ -92,7 +92,7 @@ public class RecordingPage
 						System.out.println("Click in playThisRecording3");
 					}
 					
-					if(url.contains("xohellobar"))
+					if(url.contains("xohellobar") && !url.contains("/wiki/"))
 					{
 						if(!isloggedIn)
 						{
