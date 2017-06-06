@@ -7,6 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 import helpers.Browser;
 import helpers.Config;
 import helpers.Element;
+import helpers.Element.How;
 import helpers.Helper;
 import helpers.TestDataReader;
 
@@ -29,7 +30,24 @@ public class RecordingPage
 	{
 		PageFactory.initElements(testConfig.driver, this);
 		testConfig.driver.switchTo().frame("play");
-		Browser.waitForPageLoad(testConfig, content);
+		
+		try
+		{
+			Browser.waitForPageLoad(testConfig, content);
+		}
+		catch(Exception e)
+		{
+			System.out.println("Inside Catch in Recordings Page");
+			testConfig.driver.switchTo().defaultContent();
+			WebElement watchAnyway = Element.getPageElement(testConfig, How.css, ".btn.watch");
+		
+			Browser.waitForPageLoad(testConfig, watchAnyway);
+			Element.click(testConfig, watchAnyway, "Watch Recording Anyway");
+			
+			testConfig.driver.switchTo().frame("play");
+			Browser.waitForPageLoad(testConfig, content);
+		}
+	
 	}
 	
 
