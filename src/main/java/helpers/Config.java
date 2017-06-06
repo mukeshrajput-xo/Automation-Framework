@@ -51,6 +51,10 @@ public class Config
 			String str = (String) enumeration.nextElement();
 			putRunTimeProperty(str, (String) properties.get(str));
 		}
+		
+		String resultsDir = System.getProperty("user.dir") + File.separator + getRunTimeProperty("ResultsDir");
+		putRunTimeProperty("ResultsDir", resultsDir);
+		
 	}
 	
 	
