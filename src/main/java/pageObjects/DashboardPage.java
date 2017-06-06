@@ -30,50 +30,6 @@ public class DashboardPage
 		Browser.waitForPageLoad(testConfig, snapshotStatus);
 	}
 	
-	public void verifyDashboardPage(Config testConfig)
-	{
-		//Helper.compareEquals(testConfig, "Main Heading on Page", "Manage your Snapshots", mainHeading.getText());
-		
-		Browser.wait(testConfig, Helper.generateRandomNumber(35,55));
-		
-		String oldUrl = testConfig.driver.getCurrentUrl();
-		TestDataReader testDataReader = testConfig.getExcelSheet("RECORDINGS");
-		String url = testDataReader.getData(35, "URL");
-		
-		Browser.openBrowserAndNavigateToUrl(testConfig, url);
-		Browser.waitForPageLoad(testConfig, Element.getPageElement(testConfig, How.css, "#google-signin-button"));
-		
-		Browser.wait(testConfig, Helper.generateRandomNumber(15,30));
-		
-		WebElement username = Element.getPageElement(testConfig, How.css, "#username");
-		String user = "mukesh.rajput@crossover.com";
-		Element.enterData(testConfig, username, user, "Username");
-		
-		Browser.wait(testConfig, Helper.generateRandomNumber(15,30));
-		
-		WebElement loginBtn = Element.getPageElement(testConfig, How.css, "#login-submit");
-		Element.click(testConfig, loginBtn, "Login Button");
-		
-		Browser.wait(testConfig, 10);
-		
-		username = Element.getPageElement(testConfig, How.css, "#password");
-		String pass = "Mukesh@12345";
-		Element.enterData(testConfig, username, pass, "Username");
-		
-		Browser.wait(testConfig, Helper.generateRandomNumber(15,30));
-		
-		loginBtn = Element.getPageElement(testConfig, How.css, "#login-submit");
-		Element.click(testConfig, loginBtn, "Login Button");
-		
-		Browser.wait(testConfig, 55);
-		Browser.waitForPageLoad(testConfig, Element.getPageElement(testConfig, How.css, "#create_link"));
-		
-		Browser.openBrowserAndNavigateToUrl(testConfig, oldUrl);
-		DashboardPage dashboardPage = new DashboardPage(testConfig);
-		
-		Browser.wait(testConfig, Helper.generateRandomNumber(50,115));
-	}
-	
 	public void verifyDetailsInTable(Config testConfig)
 	{
 		boolean isloggedIn = false;
@@ -125,7 +81,7 @@ public class DashboardPage
 			{
 				if(!isloggedIn)
 				{
-					verifyDashboardPage(testConfig);
+					Browser.loginCrazyEggJira(testConfig);
 					isloggedIn = true;
 				}
 			}
@@ -134,7 +90,7 @@ public class DashboardPage
 			{
 				if(!isGitHubLoggedIn)
 				{
-					loginCrazyEggGitHub(testConfig);
+					Browser.loginCrazyEggGitHub(testConfig);
 					isGitHubLoggedIn = true;
 				}
 			}
@@ -254,23 +210,5 @@ public class DashboardPage
 		Element.click(testConfig, recordingsTab, "Recordings Tab");
 		
 		return new RecordingsDashboardPage(testConfig);
-	}
-	
-	private void loginCrazyEggGitHub(Config testConfig)
-	{
-		WebElement username = Element.getPageElement(testConfig, How.css, "#login_field");
-		String user = "mukesh.rajput@crossover.com";
-		Element.enterData(testConfig, username, user, "Username");
-		
-		Browser.wait(testConfig, 2);
-		
-		WebElement password = Element.getPageElement(testConfig, How.css, "#password");
-		String pswd = "Mukesh@12345";
-		Element.enterData(testConfig, password, pswd, "Password");
-		
-		WebElement loginBtn = Element.getPageElement(testConfig, How.css, ".btn.btn-primary.btn-block");
-		Element.click(testConfig, loginBtn, "Login Button");
-		
-		Browser.wait(testConfig, 10);
 	}
 }

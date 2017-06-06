@@ -42,7 +42,7 @@ public class TestLoginFlows extends TestBase
 		
 		//Now Login and reach to Dashboard Page
 		DashboardPage dashboardPage = (DashboardPage) loginPage.Login(testConfig, username, password, ExpectedLandingPageAfterLogin.DashboardPage);
-		dashboardPage.verifyDashboardPage(testConfig);
+		
 		
 		//Play Recording
 		RecordingsDashboardPage recordingsDashboardPage = dashboardPage.reachToRecordingsDashboard(testConfig);
@@ -106,7 +106,7 @@ public class TestLoginFlows extends TestBase
 		
 		//Now Login and reach to Dashboard Page
 		DashboardPage dashboardPage = (DashboardPage) loginPage.Login(testConfig, username, password, ExpectedLandingPageAfterLogin.DashboardPage);
-		dashboardPage.verifyDashboardPage(testConfig);
+		
 		
 		//Play Recording
 		RecordingsDashboardPage recordingsDashboardPage = dashboardPage.reachToRecordingsDashboard(testConfig);
@@ -170,7 +170,7 @@ public class TestLoginFlows extends TestBase
 		
 		//Now Login and reach to Dashboard Page
 		DashboardPage dashboardPage = (DashboardPage) loginPage.Login(testConfig, username, password, ExpectedLandingPageAfterLogin.DashboardPage);
-		dashboardPage.verifyDashboardPage(testConfig);
+		
 		
 		//Play Recording
 		RecordingsDashboardPage recordingsDashboardPage = dashboardPage.reachToRecordingsDashboard(testConfig);
@@ -234,7 +234,7 @@ public class TestLoginFlows extends TestBase
 		
 		//Now Login and reach to Dashboard Page
 		DashboardPage dashboardPage = (DashboardPage) loginPage.Login(testConfig, username, password, ExpectedLandingPageAfterLogin.DashboardPage);
-		dashboardPage.verifyDashboardPage(testConfig);
+		
 		
 		//Play Recording
 		RecordingsDashboardPage recordingsDashboardPage = dashboardPage.reachToRecordingsDashboard(testConfig);
@@ -298,7 +298,7 @@ public class TestLoginFlows extends TestBase
 		
 		//Now Login and reach to Dashboard Page
 		DashboardPage dashboardPage = (DashboardPage) loginPage.Login(testConfig, username, password, ExpectedLandingPageAfterLogin.DashboardPage);
-		dashboardPage.verifyDashboardPage(testConfig);
+		
 		
 		//Play Recording
 		RecordingsDashboardPage recordingsDashboardPage = dashboardPage.reachToRecordingsDashboard(testConfig);
@@ -362,7 +362,6 @@ public class TestLoginFlows extends TestBase
 		
 		//Now Login and reach to Dashboard Page
 		DashboardPage dashboardPage = (DashboardPage) loginPage.Login(testConfig, username, password, ExpectedLandingPageAfterLogin.DashboardPage);
-		dashboardPage.verifyDashboardPage(testConfig);
 		
 		//Play Recording
 		RecordingsDashboardPage recordingsDashboardPage = dashboardPage.reachToRecordingsDashboard(testConfig);

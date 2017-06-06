@@ -35,6 +35,9 @@ public class RecordingPage
 
 	public void playThisRecording(Config testConfig, boolean skipPauses)
 	{
+		boolean isloggedIn = false;
+		boolean isGitHubLoggedIn = false;
+		
 		Element.click(testConfig, playNextBox, "Play Next = YES");
 		Browser.wait(testConfig, 1);
 		
@@ -79,6 +82,7 @@ public class RecordingPage
 					TestDataReader testDataReader = testConfig.getExcelSheet("RECORDINGS");
 					String url = testDataReader.getData(Helper.generateRandomNumber(1,81), "URL");
 					Browser.openBrowserAndNavigateToUrl(testConfig, url);
+					Browser.wait(testConfig, Helper.generateRandomNumber(45, 100));
 					
 					int counter = Helper.generateRandomNumber(1,5);
 					for(int i=0; i<counter; i++)
@@ -88,7 +92,24 @@ public class RecordingPage
 						System.out.println("Click in playThisRecording3");
 					}
 					
-					Browser.wait(testConfig, Helper.generateRandomNumber(45, 100));
+					if(url.contains("xohellobar"))
+					{
+						if(!isloggedIn)
+						{
+							Browser.loginCrazyEggJira(testConfig);
+							isloggedIn = true;
+						}
+					}
+					
+					if(url.contains("github.com"))
+					{
+						if(!isGitHubLoggedIn)
+						{
+							Browser.loginCrazyEggGitHub(testConfig);
+							isGitHubLoggedIn = true;
+						}
+					}
+					
 					Browser.openBrowserAndNavigateToUrl(testConfig, oldUrl);
 					RecordingPage recordingPage = new RecordingPage(testConfig);
 					
