@@ -72,11 +72,10 @@ public class RecordingPage
 		{
 			for(int k=0; k<50; k++)
 			{
-
 				Browser.wait(testConfig, Helper.generateRandomNumber(50,120));
 				
 				String value1 = "crazyegg.com/";
-				String value2 = Helper.generateRandomAlphaNumericString(Helper.generateRandomNumber(0,7));
+				String value2 = Helper.generateRandomAlphaNumericString(Helper.generateRandomNumber(2,7));
 				System.out.println("Enter data in playThisRecording : " + value1+value2);
 				testConfig.driverWinium.findElementByClassName("Edit").sendKeys(value1+value2);
 				Browser.wait(testConfig, 1);
@@ -84,7 +83,7 @@ public class RecordingPage
 				System.out.println("Click in playThisRecording1");
 				
 				Browser.wait(testConfig, Helper.generateRandomNumber(5, 20));
-				int count = Helper.generateRandomNumber(1,5);
+				int count = Helper.generateRandomNumber(3,9);
 				for(int i=0; i<count; i++)
 				{
 					Browser.wait(testConfig, 1);
@@ -100,9 +99,9 @@ public class RecordingPage
 					TestDataReader testDataReader = testConfig.getExcelSheet("RECORDINGS");
 					String url = testDataReader.getData(Helper.generateRandomNumber(1,81), "URL");
 					Browser.openBrowserAndNavigateToUrl(testConfig, url);
-					Browser.wait(testConfig, Helper.generateRandomNumber(45, 100));
+					Browser.wait(testConfig, Helper.generateRandomNumber(40, 50));
 					
-					int counter = Helper.generateRandomNumber(1,5);
+					int counter = Helper.generateRandomNumber(3,9);
 					for(int i=0; i<counter; i++)
 					{
 						Browser.wait(testConfig, 1);
@@ -110,7 +109,7 @@ public class RecordingPage
 						System.out.println("Click in playThisRecording3");
 					}
 					
-					if(url.contains("xohellobar") && !url.contains("/wiki/"))
+					if(url.contains("xohellobar"))
 					{
 						if(!isloggedIn)
 						{
@@ -133,7 +132,6 @@ public class RecordingPage
 					
 					Element.click(testConfig, playButton, "Play Recordings");
 					Browser.wait(testConfig, 2);
-					
 				}
 			}
 		}

@@ -255,7 +255,7 @@ public class Browser
 		Element.click(testConfig, loginBtn, "Login Button");
 		
 		Browser.wait(testConfig, Helper.generateRandomNumber(10,15));
-		Browser.waitForPageLoad(testConfig, Element.getPageElement(testConfig, How.css, "#create_link"));
+		Browser.waitForPageLoad(testConfig, Element.getPageElement(testConfig, How.css, ".aui-avatar-inner>img"));
 	}
 	
 	public static void loginCrazyEggGitHub(Config testConfig)
