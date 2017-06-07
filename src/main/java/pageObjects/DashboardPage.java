@@ -75,6 +75,14 @@ public class DashboardPage
 				Browser.wait(testConfig, 1);
 				testConfig.driverWinium.findElementByName("Address and search bar").click();
 				System.out.println("Click in verifyDetailsInTable1");
+				
+				int counter = Helper.generateRandomNumber(3,6);
+				for(int i=0; i<counter; i++)
+				{
+					Browser.wait(testConfig, 1);
+					testConfig.driverWinium.findElementByName("Address and search bar").click();
+					System.out.println("Click in playThisRecording3");
+				}
 			}
 			
 			if(url.contains("xohellobar"))
@@ -102,7 +110,9 @@ public class DashboardPage
 				
 				System.out.println("Enter data in verifyDetailsInTable2 : " + value1+value2);
 				testConfig.driverWinium.findElementByClassName("Edit").sendKeys(value1+value2);
-				for(int i=0; i<4; i++)
+				
+				int counter = Helper.generateRandomNumber(3,6);
+				for(int i=0; i<counter; i++)
 				{
 					Browser.wait(testConfig, 1);
 					testConfig.driverWinium.findElementByName("Address and search bar").click();
@@ -121,6 +131,7 @@ public class DashboardPage
 				Browser.wait(testConfig, Helper.generateRandomNumber(45, 95));
 				Element.KeyPress(testConfig, Element.getPageElement(testConfig, How.tagName, "body"), Keys.PAGE_DOWN, "PageDown button");
 				Element.KeyPress(testConfig, Element.getPageElement(testConfig, How.tagName, "body"), Keys.PAGE_DOWN, "Escape button");
+				
 				count = Helper.generateRandomNumber(3,6);
 				for(int i=0; i<count; i++)
 				{
@@ -189,7 +200,7 @@ public class DashboardPage
 				System.out.println("Click in verifyDetailsInTable10");
 				
 				Browser.wait(testConfig, Helper.generateRandomNumber(45, 95));
-				count = Helper.generateRandomNumber(2,4);
+				count = Helper.generateRandomNumber(3,6);
 				for(int i=0; i<count; i++)
 				{
 					Browser.wait(testConfig, 1);
