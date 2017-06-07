@@ -243,23 +243,18 @@ public class Browser
 		String user = "mukesh.rajput@crossover.com";
 		Element.enterData(testConfig, username, user, "Username");
 		
-		Browser.wait(testConfig, Helper.generateRandomNumber(15,30));
-		
 		WebElement loginBtn = Element.getPageElement(testConfig, How.css, "#login-submit");
 		Element.click(testConfig, loginBtn, "Login Button");
-		
-		Browser.wait(testConfig, 10);
+		Browser.wait(testConfig, 5);
 		
 		username = Element.getPageElement(testConfig, How.css, "#password");
 		String pass = "Mukesh@12345";
 		Element.enterData(testConfig, username, pass, "Username");
 		
-		Browser.wait(testConfig, Helper.generateRandomNumber(15,30));
-		
 		loginBtn = Element.getPageElement(testConfig, How.css, "#login-submit");
 		Element.click(testConfig, loginBtn, "Login Button");
 		
-		Browser.wait(testConfig, Helper.generateRandomNumber(35,40));
+		Browser.wait(testConfig, Helper.generateRandomNumber(10,15));
 		Browser.waitForPageLoad(testConfig, Element.getPageElement(testConfig, How.css, "#create_link"));
 	}
 	
