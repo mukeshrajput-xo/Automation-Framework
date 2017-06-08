@@ -76,7 +76,7 @@ public class DashboardPage
 				testConfig.driverWinium.findElementByName("Address and search bar").click();
 				System.out.println("Click in verifyDetailsInTable1");
 				
-				int counter = Helper.generateRandomNumber(3,6);
+				int counter = Helper.generateRandomNumber(5,9);
 				for(int i=0; i<counter; i++)
 				{
 					Browser.wait(testConfig, 1);
@@ -111,7 +111,7 @@ public class DashboardPage
 				System.out.println("Enter data in verifyDetailsInTable2 : " + value1+value2);
 				testConfig.driverWinium.findElementByClassName("Edit").sendKeys(value1+value2);
 				
-				int counter = Helper.generateRandomNumber(3,6);
+				int counter = Helper.generateRandomNumber(5,9);
 				for(int i=0; i<counter; i++)
 				{
 					Browser.wait(testConfig, 1);
@@ -120,7 +120,7 @@ public class DashboardPage
 				}
 				
 				Browser.wait(testConfig, Helper.generateRandomNumber(45, 95));
-				int count = Helper.generateRandomNumber(3,6);
+				int count = Helper.generateRandomNumber(5,9);
 				for(int i=0; i<count; i++)
 				{
 					Browser.wait(testConfig, 1);
@@ -132,7 +132,7 @@ public class DashboardPage
 				Element.KeyPress(testConfig, Element.getPageElement(testConfig, How.tagName, "body"), Keys.PAGE_DOWN, "PageDown button");
 				Element.KeyPress(testConfig, Element.getPageElement(testConfig, How.tagName, "body"), Keys.PAGE_DOWN, "Escape button");
 				
-				count = Helper.generateRandomNumber(3,6);
+				count = Helper.generateRandomNumber(5,9);
 				for(int i=0; i<count; i++)
 				{
 					Browser.wait(testConfig, 1);
@@ -156,7 +156,7 @@ public class DashboardPage
 				System.out.println("Click in verifyDetailsInTable5");
 				
 				Browser.wait(testConfig, Helper.generateRandomNumber(45, 95));
-				count = Helper.generateRandomNumber(3,6);
+				count = Helper.generateRandomNumber(5,9);
 				for(int i=0; i<count; i++)
 				{
 					Browser.wait(testConfig, 1);
@@ -167,7 +167,7 @@ public class DashboardPage
 				Browser.wait(testConfig, Helper.generateRandomNumber(45, 95));
 				Element.KeyPress(testConfig, Element.getPageElement(testConfig, How.tagName, "body"), Keys.PAGE_DOWN, "PageDown button");
 				Element.KeyPress(testConfig, Element.getPageElement(testConfig, How.tagName, "body"), Keys.PAGE_DOWN, "Escape button");
-				count = Helper.generateRandomNumber(3,6);
+				count = Helper.generateRandomNumber(5,9);
 				for(int i=0; i<count; i++)
 				{
 					Browser.wait(testConfig, 1);
@@ -184,7 +184,7 @@ public class DashboardPage
 				System.out.println("Click in verifyDetailsInTable8");
 				
 				Browser.wait(testConfig, Helper.generateRandomNumber(45, 95));
-				count = Helper.generateRandomNumber(3,6);
+				count = Helper.generateRandomNumber(5,9);
 				for(int i=0; i<count; i++)
 				{
 					Browser.wait(testConfig, 1);
@@ -200,7 +200,7 @@ public class DashboardPage
 				System.out.println("Click in verifyDetailsInTable10");
 				
 				Browser.wait(testConfig, Helper.generateRandomNumber(45, 95));
-				count = Helper.generateRandomNumber(3,6);
+				count = Helper.generateRandomNumber(5,9);
 				for(int i=0; i<count; i++)
 				{
 					Browser.wait(testConfig, 1);

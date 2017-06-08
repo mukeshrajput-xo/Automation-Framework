@@ -83,7 +83,7 @@ public class RecordingPage
 				System.out.println("Click in playThisRecording1");
 				
 				Browser.wait(testConfig, Helper.generateRandomNumber(5, 20));
-				int count = Helper.generateRandomNumber(3,9);
+				int count = Helper.generateRandomNumber(5,9);
 				for(int i=0; i<count; i++)
 				{
 					Browser.wait(testConfig, 1);
@@ -101,7 +101,7 @@ public class RecordingPage
 					Browser.openBrowserAndNavigateToUrl(testConfig, url);
 					Browser.wait(testConfig, Helper.generateRandomNumber(40, 50));
 					
-					int counter = Helper.generateRandomNumber(3,9);
+					int counter = Helper.generateRandomNumber(5,9);
 					for(int i=0; i<counter; i++)
 					{
 						Browser.wait(testConfig, 1);

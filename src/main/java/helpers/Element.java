@@ -31,7 +31,7 @@ public class Element
 		
 		if(testConfig.enableWinum)
 		{
-			int count = Helper.generateRandomNumber(1,5);
+			int count = Helper.generateRandomNumber(3,7);
 			for(int i=0; i<count; i++)
 			{
 				Browser.wait(testConfig, 1);
